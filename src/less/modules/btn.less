@@ -1,0 +1,28 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 1.2em;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  color: @color-white;
+  font-weight: 400;
+  font-size: @size-xs;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
+
+  &_blue {
+    background-color: @color-blue;
+
+    &:hover {
+      background-color: darken(@color-blue,8%);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.nav-top {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  &_sticky{
+    position: fixed;
+  }
+
+  &_sticky + .intro{
+    padding-top: 60px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  &__link {
+    color: @color-black;
+    text-decoration: none;
+    font-size: 18px;
+
+    &::after{
+      background-color: @color-black;
+    }
+  }
+}

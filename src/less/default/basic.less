@@ -1,0 +1,39 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  background-color: @color-white;
+  font-size: @size-sm;
+  font-family: @font-primary;
+  font-weight: 400;
+  color: @color-black;
+  line-height: 1.5;
+  box-sizing: border-box;
+  @media(max-width: @screen-xs) {
+    font-size: @size-xs + 2;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+  outline: none;
+}
+
+p {
+  margin-bottom: 1.2em;
+  text-indent: 2em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+ul{
+  padding: 0;
+  list-style: none;
+}
+.space{
+  height: 1500px;
+}
