@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: {
     list: [{
       title: 'Акция 1',

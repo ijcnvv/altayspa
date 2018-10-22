@@ -6,12 +6,12 @@ include ../tools/mixins.pug
     +b.NAV.nav-bt.__nav
       +e.UL.list
         +e.LI.item(v-for="(el, i) in menu" :key="i")
-          +e.A.link.link(href="#") {{ el.title }}
+          +e.A.link.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}
     +b.contacts.__contacts
       +e.list
         +e.item
           +e.SPAN.name Адрес:
-          +e.A.link  {{ city.text }}
+          +e.A.link  {{ address }}
         +e.item
           +e.SPAN.name Время работы:
           +e.A.link  {{ city.time }}
@@ -36,7 +36,17 @@ export default {
     ...mapGetters({
       city: 'cities/current',
       menu: 'menu/list'
-    })
+    }),
+    address(){
+      return `г. ${this.city.text}, ${this.city.address}`
+    }
+  },
+  methods: {
+    scrolling (value) {
+      if (document.querySelector(value)) {
+        this.$vuetify.goTo(value)
+      }
+    }
   }
 }
 </script>
