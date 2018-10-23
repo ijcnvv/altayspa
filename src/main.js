@@ -3,11 +3,28 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import Vuetify from 'vuetify'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
+import { faVk } from '@fortawesome/free-brands-svg-icons'
+import { faOdnoklassniki } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+
+library.add(faVk)
+library.add(faOdnoklassniki)
+library.add(faInstagram)
+library.add(faPhoneVolume)
+library.add(faClock)
+library.add(faMapMarkerAlt)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(Vuetify)
 
 import 'vuetify/dist/vuetify.min.css'
-import './less/main.less'
+import './less/styles.less'
 
 new Vue({
   el: '#app',

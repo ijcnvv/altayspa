@@ -1,0 +1,114 @@
+.slider{
+  &_isarrow{
+    padding-right: 60px;
+    padding-left: 60px;
+    @media(max-width: @screen-xs) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  &__dots {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+
+    &_inside{
+      position: absolute;
+      width: 100%;
+      margin-top: 0;
+      bottom: 25px;
+    }
+
+    button {
+      display: none;
+    }
+
+    li {
+      width: 14px;
+      height: 14px;
+      border: 1px solid @color-gray;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
+
+      &:hover {
+        background-color: @color-light;
+      }
+
+      &.slick-active {
+        background-color: @color-gray;
+      }
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.6;
+    transition: 0.3s;
+
+    &.slick-disabled {
+      opacity: 0.2;
+    }
+
+    &:not(.slick-disabled) {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.left {
+      left: -50px;
+    }
+
+    &.right {
+      right: -50px;
+    }
+  }
+  &__list{
+    height: auto;
+  }
+
+  &__item {
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    @media(max-width: @screen-xs) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &_height {
+      &_sm {
+        height: 300px;
+      }
+    }
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  &__modal{
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 3px;
+  }
+}

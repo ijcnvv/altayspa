@@ -1,8 +1,8 @@
 <template lang="pug">
 include ../tools/mixins.pug
 +b.NAV.nav-top
-  v-layout.row.inner.justify-space-between
-    +e.UL.list
+  v-layout.row.inner
+    +e.UL.list.justify-center
       +e.item(v-for="(el, i) in menu" :key="i")
         +e.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}
 </template>

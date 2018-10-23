@@ -1,78 +1,30 @@
 <template lang="pug">
 include ../tools/mixins.pug
-+b.SECTION.gallery#gallery
++b.SECTION.gallery#gallery(v-if="isGallery")
   v-layout.row.inner.justify-center
     h2.main__title Галерея
-  v-layout.row.inner.justify-center
-    +e.wrap
-      +e.SLICK.list(ref="slick" :options="slickOptions" @afterChange="handleAfterChange" @beforeChange="handleBeforeChange")
-        +e.A.item(v-for="(item,i) in slider" :key="i") 
-          img.gallery__img(:alt="item.title" :src="item.src") 
+  .inner
+    slider(:list="galleryList" :show="3" :arrow="true" :heightstable="true" :modal="true")
 </template>
 
 <script>
-import Slick from 'vue-slick'
 import {mapGetters} from 'vuex'
+import Slider from './slider'
 
 export default {
   components: {
-    Slick
+    Slider
   },
-
-  data() {
-    return {
-      swiping: false,
-      slickOptions: {
-        slidesToShow: 3,
-        centerMode: false,
-        slidesToScroll: 1,
-        dots: true,
-        infinite: false,
-        dotsClass: 'gallery__dots',
-        prevArrow: '<span class="gallery__arrow left"><span class="arrow arrow_left arrow_md"></span></span>',
-        nextArrow: '<span class="gallery__arrow right"><span class="arrow arrow_right arrow_md"></span></span>',
-        responsive: [{
-            breakpoint: 767,
-            settings: {
-              arrows: false,
-              centerMode: true,
-              centerPadding: '0',
-              slidesToShow: 1
-            }
-          },
-          {
-            breakpoint: 991,
-            settings: {
-              arrows: false,
-              centerPadding: '0',
-              slidesToShow: 2
-            }
-          }
-        ]
-      }
-    }
-  },
-
   computed: {
-    ...mapGetters({
-      slider: 'gallery/list'
-    })
-  },
-
-  methods: {
-    // фикс бага для IE и FF:
-    // срабатывает клик по ссылке при свайпе
-    route(name) {
-      if (this.swiping) return false
-      
+    ...mapGetters ({
+      list: 'gallery/list',
+      currentCity: 'cities/current'
+    }),
+    galleryList () {
+      return this.list.filter(item => item.city == this.currentCity.text)
     },
-
-    handleAfterChange() {
-      this.swiping = false
-    },
-
-    handleBeforeChange() {
-      this.swiping = true
+    isGallery () {
+      return this.galleryList.length > 0
     }
   }
 }

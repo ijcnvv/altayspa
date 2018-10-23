@@ -1,6 +1,6 @@
 <template lang="pug">
 include ../tools/mixins.pug
-+b.SECTION.intro
++b.SECTION.feedback#feedback
   v-layout.row.inner.justify-center
-    h2.main__title Приветственная речь
+    h2.main__title Отзывы
 </template>

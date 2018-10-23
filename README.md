@@ -1,6 +1,6 @@
 # softex
 
-> test project
+> altay spa project
 
 ``` bash
 # install dependencies

@@ -1,1 +1,22 @@
-.header {}
+.header {
+  &__service{
+    background-color: @color-dark;
+    color: @color-white;
+  }
+
+  &__info{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  &__logo {
+    width: 300px;
+
+    &-wrap{
+      text-align: center;
+    }
+  }
+  &__order-wrap {
+    text-align: right;
+  }
+}

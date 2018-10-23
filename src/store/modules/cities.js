@@ -4,6 +4,7 @@ export default {
     list: [{
       text: 'Абакан',
       address: 'ул. Ивана Ярыгина, 24',
+      coords: [53.720601, 91.433813],
       phone: '+7 (3902) 21-44-04',
       time: 'c 10:00 до 21:00',
       email: '',
@@ -14,6 +15,7 @@ export default {
     {
       text: 'Санкт-Петербург',
       address: '',
+      coords: [53.720601, 91.433813],
       phone: '',
       time: '',
       email: '',
@@ -24,6 +26,7 @@ export default {
     {
       text: 'Тюмень',
       address: 'ул. Свердлова, 5/2, 2 этаж',
+      coords: [57.158337, 65.552904],
       phone: '+7 (3452) 79-01-79',
       time: 'c 10:00 до 21:00',
       email: '',
