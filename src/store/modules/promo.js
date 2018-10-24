@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     list: [{
-      title: 'Акция 1',
+      title: 'Сеанс прессотерапии',
       src: '/img/1.jpg',
       city: 'Абакан',
       desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum explicabo aspernatur alias numquam? Laboriosam nisi est debitis, beatae error fugiat molestias voluptas numquam iusto aliquam ipsum eum ex quam? Repellat cum esse deserunt nihil voluptate excepturi. Cumque dolores nam ipsa. Voluptas cum voluptatum quos? Sequi, quod. Accusantium amet veritatis velit!'

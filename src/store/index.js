@@ -5,6 +5,8 @@ import menu from './modules/menu.js'
 import cities from './modules/cities.js'
 import promo from './modules/promo.js'
 import gallery from './modules/gallery.js'
+import common from './modules/common.js'
+import programs from './modules/programs.js'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -15,7 +17,9 @@ export default new Vuex.Store({
     menu,
     cities,
     gallery,
-    promo
+    promo,
+    common,
+    programs
   },
   strict: isDev
 });

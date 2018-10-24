@@ -21,12 +21,10 @@ export default {
     ...mapGetters ({
       currentCity: 'cities/current'
     }),
-    balloonTemplate() {
+    balloonTemplate () {
       return `<p>г. ${this.currentCity.text}${this.currentCity.address ? ', ' + this.currentCity.address : ''}</p><p>Время работы ${this.currentCity.time}</p><p>Телефон ${this.currentCity.phone}</p>`
     }
   }
-
-
 }
 </script>
 

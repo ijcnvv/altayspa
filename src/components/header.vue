@@ -5,7 +5,7 @@ include ../tools/mixins.pug
     v-layout.row.inner(align-center justify-space-between)
       v-flex.xs2
         +e.V-SELECT.city(:items="cities" v-model="city" label="Ваш город" dark)
-      router-link(:to="{name: 'admin'}" class="link") Авторизоваться
+      router-link(:to="{name: 'admin'}" class="link") Войти
   +e.info
     v-layout.row.inner.align-center
       v-flex.xs4
@@ -37,14 +37,11 @@ include ../tools/mixins.pug
       v-flex.xs4.header__logo-wrap
         img.header__logo(src="/img/logo-color.png" alt="logo")
       v-flex.xs4.header__order-wrap
-        +e.order.btn._default заказать сертификат
+        +e.order.btn._default._lg(@click.prevent="showOrder(true)") заказать сертификат
 </template>
 
 <script>
-import {
-  mapGetters,
-  mapMutations
-} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   computed: {
@@ -52,37 +49,50 @@ export default {
       cities: 'cities/list',
       currentCity: 'cities/current'
     }),
-    address(){
+
+    address () {
       return `г. ${this.currentCity.text}${this.currentCity.address ? ', ' + this.currentCity.address : ''}`
     },
+
     city: {
-      get(){
+      get () {
         return this.currentCity.text
       },
-      set(value){
+      set (value) {
         this.setCity(value)
       }
     }
   },
+
   methods: {
     ...mapMutations({
-      setCity: 'cities/setCity'
-    })
+      setCity: 'cities/setCity',
+      changeOrder: 'common/changeOrder'
+    }),
+
+    showOrder (val) {
+      this.changeOrder(val)
+    }
   }
 }
 </script>
 
 <style lang="less">
-.v-input {
+.header {
+  .v-input {
   margin-top: 8px;
+
   &__slot{
     flex-direction: column;
     align-items: flex-start;
   }
 }
-.v-menu{
-  &__content{
+
+.v-menu {
+  &__content {
     left: 0 !important;
   }
 }
+}
+
 </style>

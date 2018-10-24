@@ -1,10 +1,7 @@
 <template <template lang="pug">
 include ../tools/mixins.pug
 +b.SECTION.promo#promo(v-if="isPromo")
-  v-layout.row.inner.justify-center
-    h2.main__title Акции
-  .inner
-    slider(:list="promoList" :show="1" :arrow="false")
+    slider(:list="promoList" :arrow="false" :fullWidth="true" :height="500" :autoplay="true")
 </template>
 
 <script>

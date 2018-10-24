@@ -21,7 +21,9 @@ export default {
   methods: {
     scrolling (value) {
       if (document.querySelector(value)) {
-        this.$vuetify.goTo(value)
+        this.$vuetify.goTo(value, {
+          offset: -60
+        })
       }
     }
   },

@@ -4,7 +4,7 @@ include ../tools/mixins.pug
   v-layout.row.inner.justify-center
     h2.main__title Галерея
   .inner
-    slider(:list="galleryList" :show="3" :arrow="true" :heightstable="true" :modal="true")
+    slider(:list="galleryList" :show="3" :arrow="true" :height="300")
 </template>
 
 <script>
@@ -15,14 +15,17 @@ export default {
   components: {
     Slider
   },
+
   computed: {
-    ...mapGetters ({
+    ...mapGetters({
       list: 'gallery/list',
       currentCity: 'cities/current'
     }),
+
     galleryList () {
       return this.list.filter(item => item.city == this.currentCity.text)
     },
+
     isGallery () {
       return this.galleryList.length > 0
     }

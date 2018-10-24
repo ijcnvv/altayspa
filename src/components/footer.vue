@@ -39,11 +39,11 @@ import {mapGetters} from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters({
+    ...mapGetters ({
       city: 'cities/current',
       menu: 'menu/list'
     }),
-    address(){
+    address () {
       return `г. ${this.city.text}, ${this.city.address}`
     }
   },
