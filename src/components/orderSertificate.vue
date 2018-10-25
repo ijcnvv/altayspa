@@ -5,20 +5,67 @@
         v-card-title
           span.headline Заказать подарочный сертификат
         v-card-text
-          v-form.form(v-model="valid" ref="form")
-            v-text-field(label="Ваше имя" :rules="nameRules" v-model="name" prepend-icon="face" validate-on-blur)
-            v-text-field(label="Телефон для связи" :rules="phoneRules" v-model="phone" prepend-icon="phone" validate-on-blur)
-            v-text-field(label="Email" :rules="emailRules" v-model="email" prepend-icon="email" validate-on-blur)
+          v-form.form(
+            v-model="valid" 
+            ref="form")
+            v-text-field(
+              label="Ваше имя" 
+              :rules="nameRules" 
+              v-model="name" 
+              prepend-icon="face" 
+              validate-on-blur)
+            v-text-field(
+              label="Телефон для связи" 
+              :rules="phoneRules" 
+              v-model="phone" 
+              prepend-icon="phone" 
+              validate-on-blur)
+            v-text-field(
+              label="Email" 
+              :rules="emailRules" 
+              v-model="email" 
+              prepend-icon="email" 
+              validate-on-blur)
             v-layout.row
-              v-switch.form__switch.form__switch_no_message(label="Заказать сертификат на определенную сумму" v-model="isPrice")
-            v-select(label="Выберите программу из списка" v-model="program" :items="programNames" prepend-icon="receipt" :rules="programRules" v-if="!isPrice" :key="isPrice")
-            v-select(label="Выберите сумму из списка" v-model="price" :items="priceNames" prepend-icon="money" :rules="priceRules" v-else :key="isPrice")
-            v-textarea(label="Комментарий" hint="Вы можете указать в какое время вам позвонить" prepend-icon="subject" v-model="comment")
+              v-switch.form__switch.form__switch_no_message(
+                label="Заказать сертификат на определенную сумму" 
+                v-model="isPrice")
+            v-select(
+              v-if="!isPrice" 
+              label="Выберите программу из списка" 
+              v-model="program" 
+              :items="programNames" 
+              prepend-icon="receipt" 
+              :rules="programRules"               
+              :key="isPrice")
+            v-select(
+              v-else 
+              label="Выберите сумму из списка" 
+              v-model="price" 
+              :items="priceNames" 
+              prepend-icon="money" 
+              :rules="priceRules"              
+              :key="isPrice")
+            v-textarea(
+              label="Комментарий" 
+              hint="Вы можете указать в какое время вам позвонить" 
+              prepend-icon="subject" 
+              v-model="comment")
             v-layout.row
-              v-switch.form__switch(label='Даю согласие на обработку моих персональных данных на основании Федерального закона №152-ФЗ "О персональных данных" от 27.07.2006 г.' :rules="permissionRules" v-model="permission")
+              v-switch.form__switch(
+                label='Даю согласие на обработку моих персональных данных на основании Федерального закона №152-ФЗ "О персональных данных" от 27.07.2006 г.' 
+                :rules="permissionRules" 
+                v-model="permission")
             v-layout.row.justify-end
-              v-btn(color="blue darken-1" flat @click.prevent="changeOrder(false)") Отмена
-              v-btn(color="blue darken-1" flat @click.prevent="onSubmit" :disabled="!valid") Отправить
+              v-btn(
+                color="blue darken-1" 
+                flat 
+                @click.prevent="changeOrder(false)") Отмена
+              v-btn(
+                color="blue darken-1" 
+                flat 
+                @click.prevent="onSubmit" 
+                :disabled="!valid") Отправить
 </template>
 
 <script>

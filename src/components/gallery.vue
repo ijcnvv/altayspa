@@ -4,7 +4,12 @@ include ../tools/mixins.pug
   v-layout.column.justify-center.align-center
     .inner.main__title-wrap
       h2.main__title Галерея
-    slider(:list="galleryList" :show="4" :arrow="false" :height="350" :fullWidth="true")
+    slider(
+      :list="galleryList" 
+      :show="4" 
+      :arrow="false" 
+      :height="350" 
+      :fullWidth="true")
 </template>
 
 <script>

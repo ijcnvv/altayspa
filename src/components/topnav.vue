@@ -4,7 +4,9 @@ include ../tools/mixins.pug
   v-layout.row.inner
     +e.UL.list.justify-center
       +e.item(v-for="(el, i) in menu" :key="i")
-        +e.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}
+        +e.link(
+          href="#" 
+          @click.prevent="scrolling(el.target)") {{ el.title }}
 </template>
 
 <script>

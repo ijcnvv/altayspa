@@ -8,12 +8,20 @@ include ../tools/mixins.pug
     v-layout.row
       +e.NAV.nav
           +e.UL.nav-list
-            +e.nav-item(v-for="(item, i) in navList" :key="i" @click="setNav(item)" :class="{'program__nav-item_active': nav == item}") {{ item }}
+            +e.nav-item(
+              v-for="(item, i) in navList" 
+              :key="i" 
+              @click="setNav(item)" 
+              :class="{'program__nav-item_active': nav == item}") {{ item }}
     v-layout.row
       v-flex.sm3
         +e.NAV.sub-nav
             +e.UL.sub-nav-list
-              +e.sub-nav-item(v-for="(item,i) in subNavList" :key="i" @click="setSubNav(item)" :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
+              +e.sub-nav-item(
+                v-for="(item,i) in subNavList" 
+                :key="i" 
+                @click="setSubNav(item)" 
+                :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
       v-flex.sm9
         +e.container
           +e.UL.list

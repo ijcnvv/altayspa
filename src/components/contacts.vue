@@ -8,22 +8,44 @@ include ../tools/mixins.pug
     v-flex.xs12.sm6
       +e.block
         +e.P.desc Остались вопросы? Нужна помошь или консультация? Оставьте свои контактные данные и мы вам перезвоним в ближайшее время!
-        v-form.form(v-model="valid" ref="form")
-          v-text-field(label="Ваше имя" :rules="nameRules" v-model="name" prepend-icon="face" validate-on-blur )
-          v-text-field(label="Телефон для связи" :rules="phoneRules" v-model="phone" prepend-icon="phone" validate-on-blur)
+        v-form.form(
+          v-model="valid" 
+          ref="form")
+          v-text-field(
+            label="Ваше имя" 
+            :rules="nameRules" 
+            v-model="name" 
+            prepend-icon="face" 
+            validate-on-blur)
+          v-text-field(
+            label="Телефон для связи" 
+            :rules="phoneRules" 
+            v-model="phone" 
+            prepend-icon="phone" 
+            validate-on-blur)
           v-layout.row
             v-switch.form__switch(
               label='Даю согласие на обработку моих персональных данных на основании Федерального закона №152-ФЗ "О персональных данных" от 27.07.2006 г.'
               :rules="permissionRules"
-              v-model="permission"
-            )
+              v-model="permission")
           v-layout.row.justify-start
-            +e.BUTTON.btn.btn._default._lg(@click.prevent="onSubmit" :disabled="!valid") Отправить
+            +e.BUTTON.btn.btn._default._lg(
+              @click.prevent="onSubmit" 
+              :disabled="!valid") Отправить
         +e.H3.sub-title Наш адрес
         +e.CONTACT-INFO.info
     v-flex.xs12.sm6
-      yandex-map(:coords="currentCity.coords" zoom="16" style="width: 600px; height: 600px;" :scroll-zoom="false")
-        ymap-marker(marker-id="1" marker-type="placemark" :coords="currentCity.coords" :icon="{color: 'orange', glyph: 'dot'}" :balloonTemplate="balloonTemplate")
+      yandex-map(
+        :coords="currentCity.coords" 
+        zoom="16" 
+        style="width: 600px; height: 600px;" 
+        :scroll-zoom="false")
+        ymap-marker(
+          marker-id="1" 
+          marker-type="placemark" 
+          :coords="currentCity.coords" 
+          :icon="{color: 'orange', glyph: 'dot'}" 
+          :balloonTemplate="balloonTemplate")
 </template>
 
 <script>
