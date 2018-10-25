@@ -1,12 +1,12 @@
 <template lang="pug">
 .slider(:class="isArrow")
-  slick.slider__list(ref="slick" :options="slickOptions" @afterChange="handleAfterChange" @beforeChange="handleBeforeChange" :key="city")
-    .slider__item(v-for="(item,i) in list" :key="i" :class="itemClasses" :style="[itemStyle, {backgroundImage: fullWidth ? 'url('+item.src+')': ''}]")
-      img.slider__img(:alt="item.title" :src="item.src" @click.prevent="showDialog(item)" v-if="!fullWidth")
-      .slider__inner(v-else)
-        .inner
-          h3.slider__title {{ item.title }}
-          button.slider__btn.btn.btn_lg.btn_default(@click.prevent="showDialog(item)") Подробнее
+  slick.slider__list(ref="slick" :options="slickOptions" @afterChange="handleAfterChange" @beforeChange="handleBeforeChange" :key="city" :class="listClasses")
+    .slider__wrap(v-for="(item,i) in list" :key="i")
+      .slider__item(:class="itemClasses" :style="[itemStyle, {backgroundImage: 'url('+item.src+')'}]" @click.prevent="desc ? '' : showDialog(item)")
+        .slider__inner(v-if="desc")
+          .inner
+            h3.slider__title {{ item.title }}
+            button.slider__btn.btn.btn_lg.btn_default(@click.prevent="showDialog(item)") Подробнее
   v-dialog(v-model="dialog" width="auto")
     img.slider__modal-img(:src="dialogImg" v-if="!dialogDesc")
     .slider__modal-text(v-else v-html="dialogDesc")
@@ -48,6 +48,14 @@ export default {
     autoplay: {
       type: Boolean,
       default: false
+    },
+    desc: {
+      type: Boolean,
+      default: false
+    },
+    dotsinside: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -61,7 +69,7 @@ export default {
 
   created () {
     this.slickOptions = {
-      slidesToShow: this.fullWidth ? 1 : this.show,
+      slidesToShow: this.show,
       autoplay: this.autoplay,
       autoplaySpeed: 7000,
       centerMode: false,
@@ -70,7 +78,7 @@ export default {
       arrows: this.arrow,
       adaptiveHeight: this.height === 0,
       infinite: false,
-      dotsClass: `${this.dots ? 'slider__dots' : ''}${this.dots && this.fullWidth ? ' slider__dots_inside' : ''} `,
+      dotsClass: `${this.dots ? 'slider__dots' : ''}${this.dots && this.dotsinside ? ' slider__dots_inside' : ''} `,
       prevArrow: '<span class="slider__arrow left"><span class="arrow arrow_left arrow_md"></span></span>',
       nextArrow: '<span class="slider__arrow right"><span class="arrow arrow_right arrow_md"></span></span>',
       responsive: [{
@@ -85,10 +93,14 @@ export default {
         {
           breakpoint: 991,
           settings: {
-            arrows: false,
-            centerMode: true,
-            centerPadding: '0',
             slidesToShow: this.show > 2 ? 2 : this.show
+          }
+        }
+        ,
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: this.show > 3 ? 3 : this.show
           }
         }
       ]
@@ -112,6 +124,11 @@ export default {
     isArrow () {
       return {
         'slider_isarrow': this.arrow
+      }
+    },
+    listClasses () {
+      return {
+        'slider__list_fw': this.fullWidth
       }
     },
     itemClasses () {

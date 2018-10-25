@@ -1,7 +1,7 @@
 <template <template lang="pug">
 include ../tools/mixins.pug
 +b.SECTION.promo#promo(v-if="isPromo")
-    slider(:list="promoList" :arrow="false" :fullWidth="true" :height="500" :autoplay="true")
+    slider(:list="promoList" :arrow="false" :fullWidth="true" :height="550" :autoplay="true" :desc="true" :dotsinside="true")
 </template>
 
 <script>
