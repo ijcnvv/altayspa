@@ -27,7 +27,7 @@ include ../tools/mixins.pug
           +e.UL.list
             +e.item(v-for="(item, i) in programList")
               v-card
-                v-img(:src="item.img")
+                v-img.program__img(:src="item.img")
                 v-card-title
                   h3.title {{ item.title }}
                   div(v-html="item.desc")
@@ -43,10 +43,7 @@ export default {
   }),
 
   mounted () {
-    if(this.programs[0]){
-      this.nav = this.programs[0].nav
-      this.subnav = this.programs[0].subnav
-    }
+    this.navReset()
   },
 
   methods: {
@@ -57,6 +54,20 @@ export default {
 
     setSubNav (value) {
       this.subnav = value
+    },
+
+    navReset (){
+      if(this.isProgram){
+        this.nav = this.programsInCity[0].nav
+        this.subnav = this.programsInCity[0].subnav
+      }
+    }
+
+  },
+
+  watch: {
+    programsInCity () {
+      this.navReset()
     }
   },
 
