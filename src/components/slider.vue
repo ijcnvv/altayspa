@@ -8,8 +8,12 @@
             h3.slider__title {{ item.title }}
             button.slider__btn.btn.btn_lg.btn_default(@click.prevent="showDialog(item)") Подробнее
   v-dialog(v-model="dialog" width="auto")
-    img.slider__modal-img(:src="dialogImg" v-if="!dialogDesc")
-    .slider__modal-text(v-else v-html="dialogDesc")
+    img.slider__modal-img(:src="dialogObj.src" v-if="!dialogObj.desc")
+    v-card.slider__modal-text(v-else)
+      v-card-title
+        span.headline {{ dialogObj.title }}
+      v-card-text
+        div(v-html="dialogObj.desc")
 </template>
 
 <script>
@@ -61,8 +65,7 @@ export default {
 
   data: () => ({
     dialog: false,
-    dialogImg: '',
-    dialogDesc: '',
+    dialogObj: {},
     swiping: false,
     slickOptions: null
   }),
@@ -146,11 +149,8 @@ export default {
   methods: {
     showDialog (val) {
       if (this.swiping) return false
-
-      this.dialogImg = val.src
+      this.dialogObj = val
       this.dialog = true
-
-      if (val.desc) this.dialogDesc = val.desc
     },
 
     handleAfterChange () {

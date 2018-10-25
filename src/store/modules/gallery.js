@@ -12,6 +12,11 @@ export default {
       city: 'Абакан'
     },
     {
+      title: 'img 3',
+      src: '/img/3.jpg',
+      city: 'Абакан'
+    },
+    {
       title: 'img 1',
       src: '/img/1.jpg',
       city: 'Абакан'

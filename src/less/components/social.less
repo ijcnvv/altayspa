@@ -6,7 +6,7 @@
     display: flex;
   }
 
-  &__item{
+  &__item {
     &:not(:last-child){
       margin-right: 5px;
     }
@@ -24,18 +24,18 @@
     border-radius: 50%;
     transition: .3s;
 
-    &:hover{
+    &:hover {
       background-color: @color-black;
       color: @color-white;
     }
   }
 
-  &_default &__link{
+  &_default &__link {
     color: @color-white;
     background-color: @color-default;
     border: 1px solid @color-default;
 
-    &:hover{
+    &:hover {
       background-color: darken(@color-default, 8%);
       border-color: darken(@color-default, 8%);
     }

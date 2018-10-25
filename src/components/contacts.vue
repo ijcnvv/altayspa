@@ -17,7 +17,7 @@ include ../tools/mixins.pug
               :rules="permissionRules"
               v-model="permission"
             )
-          v-layout.row.justify-end
+          v-layout.row.justify-start
             +e.BUTTON.btn.btn._default._lg(@click.prevent="onSubmit" :disabled="!valid") Отправить
         +e.H3.sub-title Наш адрес
         +e.CONTACT-INFO.info
