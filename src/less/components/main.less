@@ -1,4 +1,4 @@
-.main{
+.main {
   &__block {
     padding-bottom: 80px;
     padding-top: 80px;
@@ -12,9 +12,28 @@
     }
   }
 
-  &__title{
-    font-size: @size-lg;
-    font-weight: 400;
+  &__title {
+    position: relative;
+    display: inline-flex;
     margin-bottom: 1em;
+    padding-left: 25px;
+    font-size: @size-lg;
+    font-weight: 700;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 0;
+      height: 80%;
+      width: 6px;
+      background-color: @color-default;
+    }
+  }
+
+  &__title-wrap {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
   }
 }

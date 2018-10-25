@@ -2,7 +2,8 @@
 include ../tools/mixins.pug
 +b.SECTION.gallery#gallery(v-if="isGallery")
   v-layout.column.justify-center.align-center
-    h2.main__title Галерея
+    .inner.main__title-wrap
+      h2.main__title Галерея
     slider(:list="galleryList" :show="3" :arrow="false" :height="350" :fullWidth="true")
 </template>
 

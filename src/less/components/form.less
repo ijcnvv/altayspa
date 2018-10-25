@@ -19,4 +19,62 @@
   &__icon {
     margin-left: 8px;
   }
+
+  textarea {
+    height: 50px;
+  }
+
+  .v-input {
+    margin-top: 8px;
+
+    &__slot {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &--switch {
+      &__track {
+        &.accent--text{
+          color: @color-default;
+        }
+      }
+    }
+  }
+
+  .v-menu {
+    &__content {
+      left: 0 !important;
+      top:0 !important;
+    }
+  }
+
+  .v-dialog {
+    overflow: visible;
+  }
+
+  .v-messages {
+    &__message {
+      color: @color-danger;
+    }
+  }
+
+  .v-text-field {
+    &__slot{
+      width: 100%;
+    }
+  }
+
+  &__switch {
+    .v-input__slot {
+      flex-direction: row;
+      margin-bottom: 0;
+    }
+
+    &_no_message {
+      .v-messages {
+        display: none;
+      }
+    }
+  }
+
 }
