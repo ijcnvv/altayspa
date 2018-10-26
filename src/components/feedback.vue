@@ -5,3 +5,14 @@ include ../tools/mixins.pug
     .inner.main__title-wrap
       h2.main__title Отзывы
 </template>
+
+<script>
+import {mapGetters} from 'vuex'
+
+export default {
+  ...mapGetters({
+    feebbackList: 'feedback/list'
+  })
+}
+</script>
+

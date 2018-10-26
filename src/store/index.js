@@ -7,6 +7,7 @@ import promo from './modules/promo.js'
 import gallery from './modules/gallery.js'
 import common from './modules/common.js'
 import programs from './modules/programs.js'
+import feedback from './modules/feedback'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     gallery,
     promo,
     common,
-    programs
+    programs,
+    feedback
   },
   strict: isDev
 });
