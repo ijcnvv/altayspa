@@ -3,7 +3,7 @@ v-app.page(v-if="city" v-scroll="onScroll")
   app-header
   router-view
   app-footer.page__footer
-  v-btn(fixed bottom right fab v-show="showUpper" @click.prevent="$vuetify.goTo(0)")
+  v-btn(color="orange darken-3" dark fixed bottom right fab v-show="showUpper" @click.prevent="$vuetify.goTo(0)")
     v-icon keyboard_arrow_up
 section.page.page_center(v-else)
   app-city

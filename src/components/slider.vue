@@ -1,6 +1,12 @@
 <template lang="pug">
 .slider(:class="isArrow")
-  slick.slider__list(ref="slick" :options="slickOptions" @afterChange="handleAfterChange" @beforeChange="handleBeforeChange" :key="city" :class="listClasses")
+  slick.slider__list(
+    ref="slick"
+    :options="slickOptions"
+    @afterChange="handleAfterChange"
+    @beforeChange="handleBeforeChange"
+    :key="city"
+    :class="listClasses")
     .slider__wrap(v-for="(item,i) in list" :key="i")
       .slider__item(:class="itemClasses" :style="[itemStyle, {backgroundImage: 'url('+item.src+')'}]" @click.prevent="desc ? '' : showDialog(item)")
         .slider__inner(v-if="desc")

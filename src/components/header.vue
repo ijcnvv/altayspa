@@ -5,12 +5,13 @@ include ../tools/mixins.pug
     v-layout.row.inner(align-center justify-space-between)
       v-flex.xs2
         +e.V-SELECT.city(
-          :items="cities" 
-          v-model="city" 
-          label="Ваш город" 
+          color="orange darken-3"
+          :items="cities"
+          v-model="city"
+          label="Ваш город"
           dark)
       router-link(
-        :to="{name: 'admin'}" 
+        :to="{name: 'admin'}"
         class="link") Войти
   +e.info
     v-layout.row.inner.align-center
@@ -18,7 +19,7 @@ include ../tools/mixins.pug
         +e.CONTACT-INFO.contacts
       v-flex.xs4.header__logo-wrap
         img.header__logo(
-          src="/img/logo-color.png" 
+          src="/img/logo-color.png"
           alt="logo")
       v-flex.xs4.header__order-wrap
         +e.BUTTON.order.btn._default._lg(@click.prevent="showOrder(true)") заказать сертификат
