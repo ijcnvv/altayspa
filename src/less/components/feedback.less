@@ -1,3 +1,41 @@
 .feedback {
 
+  &__item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-right: 30px;
+  }
+
+  &__quote {
+    &_t {
+      align-self: flex-start;
+    }
+    &_b {
+      align-self: flex-end;
+    }
+    .v-icon {
+      color: fade(@color-default,70%) !important;
+    }
+  }
+
+  &__container {
+    max-width: @screen-sm;
+    padding: 30px 10px;
+  }
+
+  &__text {
+    hyphens: auto;
+    margin-top: 0.5em;
+  }
 }
