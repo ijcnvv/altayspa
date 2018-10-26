@@ -9,28 +9,33 @@ include ../tools/mixins.pug
       +e.NAV.nav
           +e.UL.nav-list
             +e.nav-item(
-              v-for="(item, i) in navList" 
-              :key="i" 
-              @click="setNav(item)" 
+              v-for="(item, i) in navList"
+              :key="i"
+              @click="setNav(item)"
               :class="{'program__nav-item_active': nav == item}") {{ item }}
     v-layout.row
       v-flex.sm3
         +e.NAV.sub-nav
             +e.UL.sub-nav-list
               +e.sub-nav-item(
-                v-for="(item,i) in subNavList" 
-                :key="i" 
-                @click="setSubNav(item)" 
+                v-for="(item,i) in subNavList"
+                :key="i"
+                @click="setSubNav(item)"
                 :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
       v-flex.sm9
         +e.container
           +e.UL.list
             +e.item(v-for="(item, i) in programList")
-              v-card
+              +e.V-CARD.card
                 v-img.program__img(:src="item.img")
-                v-card-title
-                  h3.title {{ item.title }}
-                  div(v-html="item.desc")
+                +e.V-CARD-TITLE.body
+                  +e.H3.sub-title {{ item.title }}
+                  +e.desc(v-html="item.desc")
+                  +e.time Время {{ item.time }} ч
+                  +e.price Цена {{ item.price }}
+                    font-awesome-icon(icon="ruble-sign" class='fa-fw')
+                  v-layout.row.align-self-end
+                    v-btn(dark color="orange darken-3") Заказать сертификат
 </template>
 
 <script>
@@ -58,51 +63,49 @@ export default {
 
     navReset (){
       if(this.isProgram){
-        this.nav = this.programsInCity[0].nav
-        this.subnav = this.programsInCity[0].subnav
+        this.nav = this.programs[0].nav
+        this.subnav = this.programs[0].subnav
       }
     }
-
   },
 
   watch: {
-    programsInCity () {
+    programs () {
       this.navReset()
     }
   },
 
   computed: {
     ...mapGetters({
-      city: 'cities/current',
-      programs: 'programs/list'
+      city: 'cities/currentName',
+      list: 'programs/currenCityList'
     }),
 
-    programsInCity () {
-      return this.programs.filter(item => item.city == this.city.text)
+    programs () {
+      return this.list(this.city)
     },
 
     isProgram () {
-      return this.programsInCity.length > 0
+      return this.programs.length > 0
     },
 
     navList () {
-      return this.programsInCity.reduce((arr, item) => {
+      return this.programs.reduce((arr, item) => {
         if(!arr.some(el => el == item.nav)) arr.push(item.nav)
         return arr
       }, [])
     },
 
     subNavList () {
-      return this.programsInCity.filter(item => item.nav == this.nav).reduce((arr, item) => {
+      return this.programs.filter(item => item.nav == this.nav).reduce((arr, item) => {
         if(!arr.some(el => el == item.subnav)) arr.push(item.subnav)
         return arr
       }, [])
     },
 
     programList () {
-      return this.programsInCity.filter(item => item.nav == this.nav && item.subnav == this.subnav)
+      return this.programs.filter(item => item.nav == this.nav && item.subnav == this.subnav)
     }
-
   }
 }
 </script>

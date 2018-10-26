@@ -116,11 +116,11 @@ export default {
   computed: {
     ...mapGetters({
       dialog: 'common/showOrder',
-      programs: 'programs/list',
-      city: 'cities/current'
+      list: 'programs/currenCityList',
+      city: 'cities/currentName'
     }),
     programNames () {
-      return this.programs.filter(item => item.city == this.city.text).map(item => item.title)
+      return this.list(this.city).map(item => item.title)
     }
   },
   methods: {

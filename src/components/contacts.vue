@@ -39,14 +39,14 @@ include ../tools/mixins.pug
         +e.CONTACT-INFO.info
     v-flex.xs12.sm6
       yandex-map.contacts__map(
-        :coords="currentCity.coords"
+        :coords="city.coords"
         zoom="16"
         style="width: 600px; height: 600px;"
         :scroll-zoom="false")
         ymap-marker(
           marker-id="1"
           marker-type="placemark"
-          :coords="currentCity.coords"
+          :coords="city.coords"
           :icon="{color: 'orange', glyph: 'dot'}"
           :balloonTemplate="balloonTemplate")
 </template>
@@ -81,10 +81,10 @@ export default {
   }),
   computed: {
     ...mapGetters ({
-      currentCity: 'cities/current'
+      city: 'cities/current'
     }),
     balloonTemplate () {
-      return `<p>г. ${this.currentCity.text}${this.currentCity.address ? ', ' + this.currentCity.address : ''}</p><p>Время работы ${this.currentCity.time}</p><p>Телефон ${this.currentCity.phone}</p>`
+      return `<p>г. ${this.city.text}${this.city.address ? ', ' + this.city.address : ''}</p><p>Время работы ${this.city.time}</p><p>Телефон ${this.city.phone}</p>`
     }
   },
   methods: {

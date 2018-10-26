@@ -37,12 +37,12 @@ export default {
   computed: {
     ...mapGetters({
       cities: 'cities/list',
-      currentCity: 'cities/current'
+      currentCity: 'cities/currentName'
     }),
 
     city: {
       get () {
-        return this.currentCity.text
+        return this.currentCity
       },
       set (value) {
         this.setCity(value)

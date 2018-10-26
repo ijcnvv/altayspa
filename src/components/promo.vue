@@ -2,11 +2,11 @@
 include ../tools/mixins.pug
 +b.SECTION.promo#promo(v-if="isPromo")
     slider(
-      :list="promoList" 
-      :fullWidth="true" 
-      :height="550" 
-      :autoplay="true" 
-      :desc="true" 
+      :list="promoList"
+      :fullWidth="true"
+      :height="550"
+      :autoplay="true"
+      :desc="true"
       :dotsinside="true")
 </template>
 
@@ -20,11 +20,11 @@ export default {
   },
   computed: {
     ...mapGetters ({
-      list: 'promo/list',
-      currentCity: 'cities/current'
+      list: 'promo/currenCityList',
+      city: 'cities/currentName'
     }),
     promoList () {
-      return this.list.filter(item => item.city == this.currentCity.text)
+      return this.list(this.city)
     },
     isPromo () {
       return this.promoList.length > 0

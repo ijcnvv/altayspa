@@ -45,6 +45,9 @@ export default {
   getters: {
     list(state){
       return state.list
+    },
+    currenCityList (state, getters) {
+      return city => getters.list.filter(item => item.city == city)
     }
   }
 }

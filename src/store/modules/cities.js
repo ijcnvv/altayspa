@@ -48,6 +48,9 @@ export default {
     },
     current (state, getters) {
       return getters.list.find(value => value.text == getters.target)
+    },
+    currentName (state, getters) {
+      return getters.current.text
     }
   },
   mutations: {

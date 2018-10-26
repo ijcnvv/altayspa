@@ -5,10 +5,10 @@ include ../tools/mixins.pug
     .inner.main__title-wrap
       h2.main__title Галерея
     slider(
-      :list="galleryList" 
-      :show="4" 
-      :arrow="false" 
-      :height="350" 
+      :list="gallery"
+      :show="4"
+      :arrow="false"
+      :height="350"
       :fullWidth="true")
 </template>
 
@@ -23,16 +23,16 @@ export default {
 
   computed: {
     ...mapGetters({
-      list: 'gallery/list',
-      currentCity: 'cities/current'
+      list: 'gallery/currenCityList',
+      city: 'cities/currentName'
     }),
 
-    galleryList () {
-      return this.list.filter(item => item.city == this.currentCity.text)
+    gallery () {
+      return this.list(this.city)
     },
 
     isGallery () {
-      return this.galleryList.length > 0
+      return this.gallery.length > 0
     }
   }
 }

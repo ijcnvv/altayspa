@@ -1,11 +1,11 @@
 <template lang="pug">
 include ../tools/mixins.pug
-+b.SECTION.feedback#feedback
++b.SECTION.feedback#feedback(v-if="isFeedback")
   v-layout.row.inner.justify-center
     .inner.main__title-wrap
       h2.main__title Отзывы
   .inner.slider
-    +e.SLICK.list(ref="slick" :options="slickOptions" :key="cityName")
+    +e.SLICK.list(ref="slick" :options="slickOptions" :key="city")
       +e.wrap(v-for="(item, index) in feedbacks" :key="index")
         +e.item
           +e.img(:style="'background-image: url(' + item.img + ')'")
@@ -43,14 +43,14 @@ export default {
 
   computed: {
     ...mapGetters({
-      list: 'feedback/list',
-      city: 'cities/current'
+      list: 'feedback/currenCityList',
+      city: 'cities/currentName'
     }),
-    cityName () {
-      return this.city.text
-    },
     feedbacks () {
-      return this.list.filter(item => item.city == this.cityName)
+      return this.list(this.city)
+    },
+    isFeedback () {
+      return this.feedbacks.length > 0
     }
   }
 }
