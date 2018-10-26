@@ -1,18 +1,44 @@
 <template lang="pug">
-include tools/mixins.pug
-+b.SECTION.page
-  +e.APP-HEADER.header
-  +e.ROUTER-VIEW.main
-  +e.APP-FOOTER.footer
+v-app.page(v-if="city" v-scroll="onScroll")
+  app-header
+  router-view
+  app-footer.page__footer
+  v-btn(fixed bottom right fab v-show="showUpper" @click.prevent="$vuetify.goTo(0)")
+    v-icon keyboard_arrow_up
+section.page.page_center(v-else)
+  app-city
 </template>
 
 <script>
 import appHeader from './components/header'
 import appFooter from './components/footer'
+import appCity from './components/citySelect'
+import {mapGetters} from 'vuex'
+
 export default {
   components: {
     appHeader,
-    appFooter
+    appFooter,
+    appCity
+  },
+
+  data: () => ({
+    offsetTop: 0
+  }),
+
+  computed: {
+    ...mapGetters({
+      city: 'cities/current'
+    }),
+    showUpper () {
+      return this.offsetTop > 700
+    }
+  },
+
+  methods: {
+    onScroll (e) {
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
+    }
   }
 }
 </script>
