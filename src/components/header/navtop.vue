@@ -1,16 +1,15 @@
 <template lang="pug">
-include ../tools/mixins.pug
+include ../../tools/mixins.pug
 +b.NAV.nav-top
-  v-layout.row.inner
-    +e.UL.list.justify-center
-      +e.item(v-for="(el, i) in menu" :key="i")
-        +e.link(
-          href="#" 
-          @click.prevent="scrolling(el.target)") {{ el.title }}
+  +e.wrap
+    v-layout.row.inner
+      +e.UL.list.justify-center
+        +e.item(v-for="(el, i) in menu" :key="i")
+          +e.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}
 </template>
 
 <script>
-import cssSup from '../tools/css.js'
+import cssSup from '../../tools/css.js'
 import {mapGetters} from 'vuex'
 
 export default {

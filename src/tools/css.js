@@ -1,4 +1,4 @@
-const supportsCSS = function(property, value) {
+const supportsCSS = (property, value) => {
   try {
     let element = document.createElement('span');
 
@@ -13,6 +13,6 @@ const supportsCSS = function(property, value) {
 
     return false;
   }
-};
+}
 
-export default supportsCSS;
+export default supportsCSS

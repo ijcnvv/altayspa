@@ -8,9 +8,14 @@
 
   &__item {
     position: relative;
-    width: 100%;
-    &:not(:last-child){
+    width: 50%;
+
+    &:not(:last-child) {
       margin-bottom: 10px;
+    }
+
+    &:nth-child(2n) {
+      padding-left: 15px;
     }
   }
 

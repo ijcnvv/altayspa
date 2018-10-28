@@ -2,22 +2,51 @@ export default {
   namespaced: true,
   state: {
     list: [{
-      title: 'Сеанс прессотерапии',
-      src: '/img/1.jpg',
+      title: 'Сезонная SPA-программа всего за 700 рублей',
+      src: '/img/promo.jpg',
       city: 'Абакан',
-      desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum explicabo aspernatur alias numquam? Laboriosam nisi est debitis, beatae error fugiat molestias voluptas numquam iusto aliquam ipsum eum ex quam? Repellat cum esse deserunt nihil voluptate excepturi. Cumque dolores nam ipsa. Voluptas cum voluptatum quos? Sequi, quod. Accusantium amet veritatis velit!'
+      desc: `Сезонная программа-знакомство с Таёжным SPA для восстановления сил и энергии<br><br>
+      1. сибирская  арома-сауна<br>
+      2. релакс-массаж с тёплым маслом кедровых орехов<br>
+      3. сибирский фиточай с ягодами<br><br>     
+      Продолжительность 1 час`
     },
     {
-      title: 'Акция 2',
-      src: '/img/2.jpg',
+      title: 'Сеанс прессотерапии всего за 350 рублей',
+      src: '/img/promo2.jpg',
       city: 'Абакан',
-      desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum explicabo aspernatur alias numquam? Laboriosam nisi est debitis, beatae error fugiat molestias voluptas numquam iusto aliquam ipsum eum ex quam? Repellat cum esse deserunt nihil voluptate excepturi. Cumque dolores nam ipsa. Voluptas cum voluptatum quos? Sequi, quod. Accusantium amet veritatis velit!'
+      desc: `Прессотерапия - это аппаратный лимфодренажный массаж. Курс из 10 сеансов помогает:<br><br>
+      1. устранить "апельсиновую корку"<br>
+      2. убрать 3-5 см в талии и бёдрах<br>
+      3. снять хроническую тяжесть в ногах и сделать походку легкой<br>
+      4. убрать мышечное перенапряжение после физических нагрузок<br>
+      5. вывести жидкость, устранить отеки, укрепить стенки сосудов<br>
+      6. предупредить появление варикоза<br><br>      
+      Продолжительность 1 сеанса: 40 минут<br>
+      В комплекте манжеты для талии и ног<br>
+      Обычная цена сеанса: 500 рублей<br>
+      Цена 350 рублей за сеанс действует при покупке абонемента на 10 посещений
+      `    
     },
     {
-      title: 'Акция 3',
-      src: '/img/3.jpg',
+      title: 'Сезонная SPA-программа всего за 1000 рублей',
+      src: '/img/promo.jpg',
       city: 'Тюмень',
-      desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum explicabo aspernatur alias numquam? Laboriosam nisi est debitis, beatae error fugiat molestias voluptas numquam iusto aliquam ipsum eum ex quam? Repellat cum esse deserunt nihil voluptate excepturi. Cumque dolores nam ipsa. Voluptas cum voluptatum quos? Sequi, quod. Accusantium amet veritatis velit!'
+      desc: `Сезонная программа-знакомство с Таёжным SPA для восстановления сил и энергии<br><br>
+      1. сибирская  арома-сауна<br>
+      2. релакс-массаж с тёплым маслом кедровых орехов<br>
+      3. сибирский фиточай с ягодами<br><br>     
+      Продолжительность 1 час`
+    },
+    {
+      title: 'Сезонная SPA-программа всего за 1000 рублей',
+      src: '/img/promo.jpg',
+      city: 'Санкт-Петербург',
+      desc: `Сезонная программа-знакомство с Таёжным SPA для восстановления сил и энергии<br><br>
+      1. сибирская  арома-сауна<br>
+      2. релакс-массаж с тёплым маслом кедровых орехов<br>
+      3. сибирский фиточай с ягодами<br><br>     
+      Продолжительность 1 час`
     }]
   },
   getters: {

@@ -4,10 +4,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: @color-dark;
+  background-color: @color-white;
 
-  &_sticky{
+  &_sticky {
     position: fixed;
+  }
+
+  &__wrap {
+    .pattern();
   }
 
   &_sticky + .intro{

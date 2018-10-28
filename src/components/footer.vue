@@ -2,7 +2,11 @@
 include ../tools/mixins.pug
 +b.FOOTER.footer
   v-layout.row.inner(justify-space-between align-start)
-    +e.IMG.logo(alt="logo" src="/img/logo-white.png")
+    .footer__logo-wrap
+      img.footer__logo(
+        src="/img/logo-white.png"
+        alt="logo")
+      +e.SPAN.logo-text Таёжный SPA
     +b.NAV.nav-bt.__nav
       +e.UL.list
         +e.LI.item(v-for="(el, i) in menu" :key="i")

@@ -40,3 +40,32 @@ ul{
   padding: 0;
   list-style: none;
 }
+
+.v-dialog {
+  overflow: hidden;
+  box-shadow: none;
+
+  &--active {
+    position: relative;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }  
+}
+
+.fade {
+  &-enter-active, 
+  &-leave-active {
+    transition: opacity .5s;
+  }
+  &-enter, 
+  &-leave-to {
+    opacity: 0;
+  }
+}

@@ -1,9 +1,8 @@
 <template lang="pug">
 include ../tools/mixins.pug
 +b.SECTION.contacts#contacts
-  v-layout.row.inner.justify-center
-    .inner.main__title-wrap
-      h2.main__title Контакты
+  .inner.main__title-wrap
+    h2.main__title Контакты
   v-layout.row.inner.justify-center
     v-flex.xs12.sm6
       +e.block
@@ -32,9 +31,7 @@ include ../tools/mixins.pug
               :rules="permissionRules"
               v-model="permission")
           v-layout.row.justify-start
-            +e.BUTTON.btn.btn._default._lg(
-              @click.prevent="onSubmit"
-              :disabled="!valid") Отправить
+            v-btn.ma-0.mt-4(color="orange darken-3 white--text" large @click.prevent="onSubmit" :disabled="!valid") Отправить
         +e.H3.sub-title Наш адрес
         +e.CONTACT-INFO.info
     v-flex.xs12.sm6

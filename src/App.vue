@@ -1,16 +1,17 @@
 <template lang="pug">
-v-app.page(v-if="city" v-scroll="onScroll")
-  app-header
-  router-view
-  app-footer.page__footer
-  v-btn(color="orange darken-3" dark fixed bottom right fab v-show="showUpper" @click.prevent="$vuetify.goTo(0)")
-    v-icon keyboard_arrow_up
-section.page.page_center(v-else)
-  app-city
+transition(mode="out-in" name="fade")
+  v-app.page(v-if="city" v-scroll="onScroll" key="1")
+    app-header
+    router-view
+    app-footer.page__footer
+    v-btn(color="orange darken-3" dark fixed bottom right fab v-show="showUpper" @click.prevent="$vuetify.goTo(0)")
+      v-icon keyboard_arrow_up
+  section.page.page__city-select(v-else key="2")
+    app-city
 </template>
 
 <script>
-import appHeader from './components/header'
+import appHeader from './components/header/header'
 import appFooter from './components/footer'
 import appCity from './components/citySelect'
 import {mapGetters} from 'vuex'

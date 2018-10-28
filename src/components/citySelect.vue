@@ -1,6 +1,11 @@
 <template lang="pug">
 include ../tools/mixins.pug
 +b.city
+  +e.logo-wrap
+    img.city__logo(
+      src="/img/logo-white.png"
+      alt="logo")
+    +e.SPAN.logo-text Таёжный SPA
   +e.H1.subject Укажите Ваш город
   +e.UL.list
     +e.item(v-for="(item, index) in list" :key="index" @click.prevent="setCity(item.text)")

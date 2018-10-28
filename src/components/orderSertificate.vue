@@ -100,7 +100,6 @@ export default {
       v => /^\+?(7|8)?\d{10}$/.test(v) || 'Неверный формат телефона'
     ],
     emailRules: [
-      v => !!v || 'Необходимо указать E-mail',
       v => /^.+?@.+?\..+$/.test(v) || 'E-mail указан некорректно'
     ],
     programRules: [
@@ -115,7 +114,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      dialog: 'common/showOrder',
+      dialog: 'order/showForm',
       list: 'programs/currenCityList',
       city: 'cities/currentName'
     }),
@@ -125,7 +124,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      changeOrder: 'common/changeOrder'
+      changeOrder: 'order/showForm'
     }),
     ...mapActions({
       sendOrder: 'common/sendOrder'

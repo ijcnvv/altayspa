@@ -1,73 +1,96 @@
 .program {
+  &__ico {
+    color: @color-default;
+  }
+  &__img {
+    height: 250px;
+  }
+
   &__body {
     flex-direction: column;
     align-items: flex-start;
   }
 
   &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    column-count: 2;
+    column-gap: 30px;
   }
 
   &__item {
-    width: ~"calc(50% - 15px)";
+    break-inside: avoid;
+    width: 100%;
     margin-bottom: 30px;
 
-    &:nth-last-child(-n+2){
+    &:last-child {
       margin-bottom: 0;
     }
   }
 
   &__nav {
+    width: 100%;
+
     &-list {
       display: flex;
-      flex-wrap: wrap;
+      width: 100%;
+      justify-content: stretch
     }
 
     &-item {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex-basis: 100%;
+      font-size: @size-sm + 2;
       height: 50px;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid @color-default;
-      border-radius: 25px;
       color: @color-default;
       cursor: pointer;
 
       &_active {
         background-color: @color-default;
         color: @color-white;
-      }
+      }      
 
-      &:not(:last-child) {
-        margin-right: 20px;
+      &:not(:first-child) {
+        border-left-width: 0;
       }
     }
   }
 
   &__sub-nav {
+    position: sticky;
+    top: 80px;
+    z-index: 1;
+    margin-right: 30px;
+    border-top: 1px solid @color-default;
+    border-bottom: 1px solid @color-default;
+    padding: 15px 0;
+
     &-list {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin-top: 20px;
     }
 
     &-item {
-      display: flex;
-      align-items: center;
-      height: 40px;
-      padding-left: 15px;
-      padding-right: 15px;
-      border: 1px solid @color-default;
-      color: @color-default;
-      cursor: pointer;
+      position: relative;
+      padding-left: 10px;
+      cursor: pointer;      
 
       &_active {
-        background-color: @color-default;
-        color: @color-white;
+        color: @color-default;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 10%;
+          left: 0;
+          width: 3px;
+          height: 80%;
+          background-color: @color-default;
+        }
       }
 
       &:not(:last-child) {

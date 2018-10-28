@@ -11,7 +11,8 @@ export default {
       email: '',
       vk: 'https://vk.com/altayzdrav.abakan',
       ok: 'https://www.ok.ru/zdravnitca',
-      im: 'https://www.instagram.com/zdravnitsa.abakan/'
+      im: 'https://www.instagram.com/zdravnitsa.abakan/',
+      feedback: 'https://vk.com/topic-137830954_34918995'
     },
     {
       text: 'Санкт-Петербург',
@@ -23,7 +24,8 @@ export default {
       email: '',
       vk: '',
       ok: '',
-      im: ''
+      im: '',
+      feedback: ''
     },
     {
       text: 'Тюмень',
@@ -35,7 +37,8 @@ export default {
       email: '',
       vk: 'https://vk.com/altay_spa',
       ok: '',
-      im: 'https://www.instagram.com/altay.spa/'
+      im: 'https://www.instagram.com/altay.spa/',
+      feedback: 'https://vk.com/topic-157723922_36577430'
     }],
     target: window.localStorage.getItem('city') || ''
   },
@@ -50,7 +53,7 @@ export default {
       return getters.list.find(value => value.text == getters.target)
     },
     currentName (state, getters) {
-      return getters.current.text
+      return getters.current ? getters.current.text : ''
     }
   },
   mutations: {

@@ -1,6 +1,0 @@
-<template lang="pug">
-include ../tools/mixins.pug
-+b.SECTION.intro
-  v-layout.row.inner.justify-center
-    h2.main__title Приветственная речь
-</template>
