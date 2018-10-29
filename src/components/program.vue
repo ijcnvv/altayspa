@@ -25,7 +25,7 @@ include ../tools/mixins.pug
       v-flex.sm9
         +e.container
           +e.UL.list
-            +e.item(v-for="(item, index) in programList" :key="index")
+            +e.item(v-for="(item, index) in listSorted" :key="index")
               +e.V-CARD.card
                 v-img.program__img(:src="item.img")
                 +e.V-CARD-TITLE.body
@@ -76,6 +76,8 @@ export default {
 
   data: () => ({
     modalMore: false,
+    sort: 'title',
+    sortList: ['title', 'time', 'price'],
     programId: -1,
     nav: null,
     subnav: null
@@ -175,6 +177,21 @@ export default {
 
     programList () {
       return this.programs.filter(item => item.nav == this.nav && item.subnav == this.subnav)
+    },
+
+    listSorted () {
+      let s = this.sort
+
+      return this.programList.sort((a,b) => {
+        if (a[s] > b[s]) {
+            return 1;
+          }
+          if (a[s] < b[s]) {
+            return -1;
+          }
+          // a должно быть равным b
+          return 0;
+      })
     }
   }
 }
