@@ -29,17 +29,18 @@ include ../tools/mixins.pug
                 v-img.program__img(:src="item.img")
                 +e.V-CARD-TITLE.body
                   +e.H3.title {{ item.title }}
-                  +e.desc.mt-2(v-html="item.desc")
-                  +e.H4.sub-title.mt-3(v-if="item.timetable.length") Расписание
-                  +e.timetable.mb-3(v-html="item.timetable")
-                  +e.time 
-                    font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','clock']")
-                    span {{ time(i) }}
-                  +e.price 
-                    font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
-                    span {{ item.price }}
-                  v-layout.row.align-self-end.mt-2
-                    v-btn.ma-0(color="orange darken-3 white--text") Заказать сертификат
+                  //- +e.desc.mt-2(v-html="item.desc")
+                  //- +e.H4.sub-title.mt-3(v-if="item.timetable.length") Расписание
+                  //- +e.timetable.mb-3(v-html="item.timetable")
+                  v-layout.row.mt-2.justify-space-between.align-end
+                    v-flex
+                      +e.time
+                        font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','clock']")
+                        span {{ time(i) }}
+                      +e.price
+                        font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
+                        span {{ item.price }}
+                    v-btn.ma-0(color="orange darken-3 white--text") Подробнее
 </template>
 
 <script>
@@ -110,7 +111,7 @@ export default {
 
         let time = this.programList.find((el, index) => index == id).time,
           hour = Math.floor(time / 60),
-          min = time - hour * 60          
+          min = time - hour * 60
 
           hour = hour > 0 ? `${hour} час${ending(hour, '','а','ов')}` : ''
           min = min > 0 ? `${min} минут${ending(min, 'а','ы','')}` : ''
