@@ -14,14 +14,20 @@ include ../tools/mixins.pug
               :class="{'program__nav-item_active': nav == item}") {{ item }}
     v-layout.row
       v-flex.sm3
-        +e.NAV.sub-nav
-            +e.UL.sub-nav-list
-              +e.sub-nav-item(
-                v-for="(item, index) in subNavList"
-                :key="index"
-                @click="setSubNav(item)"
-                :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
-            +e.sort
+        +e.aside
+          +e.NAV.sub-nav
+              +e.UL.sub-nav-list
+                +e.sub-nav-item(
+                  v-for="(item, index) in subNavList"
+                  :key="index"
+                  @click="setSubNav(item)"
+                  :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
+          +e.sort.mt-4.ml-2.mr-5
+            v-select(
+              color="orange darken-3"
+              :items="sortList"
+              v-model="sort"
+              label="Сортировать")
       v-flex.sm9
         +e.container
           +e.UL.list
@@ -77,7 +83,18 @@ export default {
   data: () => ({
     modalMore: false,
     sort: 'title',
-    sortList: ['title', 'time', 'price'],
+    sortList: [{
+      text:'По названию',
+      value:'title'
+    },
+     {
+      text:'По продолжительности',
+      value:'time'
+    }, 
+     {
+      text:'По цене',
+      value:'price'
+    }],
     programId: -1,
     nav: null,
     subnav: null
