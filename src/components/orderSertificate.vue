@@ -80,6 +80,12 @@
 import {mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
+  props: {
+    programId: {
+      type: Number,
+      default: -1
+    }
+  },
   data: () => ({
     valid: false,
     isPrice: false,

@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state: {
     list: [{
+      id: 1,
       text: 'Абакан',
       address: 'ул. Ивана Ярыгина, 24',
       coords: [53.720601, 91.433813],
@@ -15,6 +16,7 @@ export default {
       feedback: 'https://vk.com/topic-137830954_34918995'
     },
     {
+      id: 2,
       text: 'Санкт-Петербург',
       address: '',
       img: '/img/2.jpg',
@@ -28,6 +30,7 @@ export default {
       feedback: ''
     },
     {
+      id: 3,
       text: 'Тюмень',
       address: 'ул. Свердлова, 5/2, 2 этаж',
       img: '/img/3.jpg',

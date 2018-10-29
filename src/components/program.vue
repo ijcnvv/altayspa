@@ -8,8 +8,8 @@ include ../tools/mixins.pug
       +e.NAV.nav.mb-4
           +e.UL.nav-list
             +e.nav-item(
-              v-for="(item, i) in navList"
-              :key="i"
+              v-for="(item, index) in navList"
+              :key="index"
               @click="setNav(item)"
               :class="{'program__nav-item_active': nav == item}") {{ item }}
     v-layout.row
@@ -17,30 +17,47 @@ include ../tools/mixins.pug
         +e.NAV.sub-nav
             +e.UL.sub-nav-list
               +e.sub-nav-item(
-                v-for="(item,i) in subNavList"
-                :key="i"
+                v-for="(item, index) in subNavList"
+                :key="index"
                 @click="setSubNav(item)"
                 :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
+            +e.sort
       v-flex.sm9
         +e.container
           +e.UL.list
-            +e.item(v-for="(item, i) in programList")
+            +e.item(v-for="(item, index) in programList" :key="index")
               +e.V-CARD.card
                 v-img.program__img(:src="item.img")
                 +e.V-CARD-TITLE.body
-                  +e.H3.title {{ item.title }}
-                  //- +e.desc.mt-2(v-html="item.desc")
-                  //- +e.H4.sub-title.mt-3(v-if="item.timetable.length") Расписание
-                  //- +e.timetable.mb-3(v-html="item.timetable")
+                  +e.H3.title.mb-2 {{ item.title }}
+                  +e.timetable.mb-2(v-html="item.timetable" v-if="item.timetable.length")
                   v-layout.row.mt-2.justify-space-between.align-end
                     v-flex
                       +e.time
                         font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','clock']")
-                        span {{ time(i) }}
+                        span {{ time(item.id) }}
                       +e.price
                         font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
                         span {{ item.price }}
-                    v-btn.ma-0(color="orange darken-3 white--text") Подробнее
+                    v-btn.ma-0(color="orange darken-3 white--text" @click.prevent="showDialog(item.id)") Подробнее
+  v-dialog(v-model="modalMore" width="600")
+    +e.V-CARD.modal-text(v-if="modalMore")
+      v-card-text
+        v-img.program__modal-img.mb-3(:src="dialogObj.img")
+        +e.H2.title.mb-2 {{ dialogObj.title }}
+        +e.desc.mb-3(v-html="dialogObj.desc" v-if="dialogObj.desc.length")
+        div.mb-3(v-if="dialogObj.timetable.length")
+          +e.H4.sub-title Расписание
+          +e.timetable(v-html="dialogObj.timetable")
+        v-layout.row.justify-space-between.align-end
+          v-flex
+            +e.time
+              font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','clock']")
+              span {{ time(programId) }}
+            +e.price
+              font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
+              span {{ dialogObj.price }}
+          v-btn.ma-0(color="orange darken-3 white--text") Заказать сертификат
 </template>
 
 <script>
@@ -56,7 +73,10 @@ export default {
   components: {
     FontAwesomeIcon
   },
+
   data: () => ({
+    modalMore: false,
+    programId: -1,
     nav: null,
     subnav: null
   }),
@@ -66,6 +86,11 @@ export default {
   },
 
   methods: {
+    showDialog (id) {
+      this.programId = id
+      this.modalMore = true
+    },
+
     setNav (value) {
       this.nav = value
       this.subnav = this.subNavList[0]
@@ -89,6 +114,14 @@ export default {
   watch: {
     programs () {
       this.navReset()
+    },
+    modalMore () {
+      if (this.modalMore) {
+        document.querySelector('html').classList.add('out')
+      } else {
+        document.querySelector('html').classList.remove('out')
+        this.programId = -1
+      }
     }
   },
 
@@ -97,6 +130,10 @@ export default {
       city: 'cities/currentName',
       list: 'programs/currenCityList'
     }),
+
+    dialogObj () {
+      return this.programId > -1 ? this.programs.find(el => el.id == this.programId) : {}
+    },
 
     programs () {
       return this.list(this.city)
@@ -109,7 +146,9 @@ export default {
     time () {
       return id => {
 
-        let time = this.programList.find((el, index) => index == id).time,
+        if(id < 0) return false
+
+        let time = this.programs.find(el => el.id == id).time,
           hour = Math.floor(time / 60),
           min = time - hour * 60
 

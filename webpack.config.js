@@ -3,7 +3,10 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  entry: [/*'babel-polyfill',*/ './src/main.js'],
+  entry: [
+    'babel-polyfill',
+    './src/main.js'
+  ],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -12,30 +15,18 @@ module.exports = {
   module: {
     rules: [{
       test: /\.css$/,
-      /*use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader'
-        }, {
-          loader: 'postcss-loader'
-        }, {
-          loader: 'less-loader'
-        }]
-      })*/
+      // use: ExtractTextPlugin.extract({
+      //   fallback: 'style-loader',
+      //   use: ['css-loader', 'postcss-loader', 'less-loader']
+      // })
       use: ['style-loader','css-loader']
     },
     {
         test: /\.less$/,
-        /*use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader'
-          }, {
-            loader: 'postcss-loader'
-          }, {
-            loader: 'less-loader'
-          }]
-        })*/
+        // use: ExtractTextPlugin.extract({
+        //   fallback: 'style-loader',
+        //   use: ['css-loader', 'postcss-loader', 'less-loader']
+        // })
         use: ['style-loader','css-loader', 'postcss-loader', 'less-loader']
       },
       {
