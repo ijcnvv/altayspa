@@ -63,15 +63,16 @@ include ../tools/mixins.pug
             +e.price
               font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
               span {{ dialogObj.price }}
-          v-btn.ma-0(color="orange darken-3 white--text") Заказать сертификат
+          v-btn.ma-0(color="orange darken-3 white--text" @click="showOrder") Заказать сертификат
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faRubleSign, faClock } from '@fortawesome/free-solid-svg-icons'
 import ending from '../tools/ending.js'
+import appOrder from './orderSertificate'
 
 library.add(faClock, faRubleSign)
 
@@ -82,7 +83,7 @@ export default {
 
   data: () => ({
     modalMore: false,
-    sort: 'title',
+    sort: window.localStorage.getItem('sort') || 'title',
     sortList: [{
       text:'По названию',
       value:'title'
@@ -90,7 +91,7 @@ export default {
      {
       text:'По продолжительности',
       value:'time'
-    }, 
+    },
      {
       text:'По цене',
       value:'price'
@@ -105,6 +106,17 @@ export default {
   },
 
   methods: {
+    ...mapMutations({
+      setProgramId: 'order/setProgramId',
+      changeOrder: 'order/showForm'
+    }),
+
+    showOrder () {
+      this.modalMore = false
+      this.setProgramId(this.programId)
+      this.changeOrder(true)
+    },
+
     showDialog (id) {
       this.programId = id
       this.modalMore = true
@@ -131,9 +143,14 @@ export default {
   },
 
   watch: {
+    sort () {
+      window.localStorage.setItem('sort', this.sort)
+    },
+
     programs () {
       this.navReset()
     },
+
     modalMore () {
       if (this.modalMore) {
         document.querySelector('html').classList.add('out')
@@ -165,7 +182,7 @@ export default {
     time () {
       return id => {
 
-        if(id < 0) return false
+        if(id < 0) return ''
 
         let time = this.programs.find(el => el.id == id).time,
           hour = Math.floor(time / 60),
@@ -200,14 +217,9 @@ export default {
       let s = this.sort
 
       return this.programList.sort((a,b) => {
-        if (a[s] > b[s]) {
-            return 1;
-          }
-          if (a[s] < b[s]) {
-            return -1;
-          }
-          // a должно быть равным b
-          return 0;
+        if (a[s] > b[s]) return 1
+        if (a[s] < b[s]) return -1
+        return 0
       })
     }
   }

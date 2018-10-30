@@ -68,7 +68,7 @@
               v-btn(
                 color="orange darken-3"
                 flat
-                @click.prevent="changeOrder(false)") Отмена
+                @click.prevent="onClose") Отмена
               v-btn(
                 color="orange darken-3"
                 flat
@@ -80,20 +80,13 @@
 import {mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
-  props: {
-    programId: {
-      type: Number,
-      default: -1
-    }
-  },
   data: () => ({
     valid: false,
     isPrice: false,
-    permission: false,
+    permission: true,
     name: '',
     phone: '',
     email: '',
-    program: '',
     comment: '',
     price: '',
     priceNames: [1000, 2000, 3000, 5000, 10000],
@@ -121,23 +114,52 @@ export default {
   computed: {
     ...mapGetters({
       dialog: 'order/showForm',
+      programId: 'order/programId',
       list: 'programs/currenCityList',
       city: 'cities/currentName'
     }),
+    program: {
+      get () {
+        return this.programId || -1
+      },
+      set (id) {
+        this.setProgramId(id)
+      }
+    },
     programNames () {
-      return this.list(this.city).map(item => item.title)
+      return this.list(this.city).map(item => {
+        return {
+          value: item.id,
+          text: item.title
+        }
+      })
     }
   },
   methods: {
     ...mapMutations({
-      changeOrder: 'order/showForm'
+      changeOrder: 'order/showForm',
+      setProgramId: 'order/setProgramId'
     }),
     ...mapActions({
       sendOrder: 'common/sendOrder'
     }),
     onSubmit () {
       this.sendOrder(false)
-      this.$refs.form.reset()
+      this.formReset()
+    },
+    onClose () {
+      this.formReset()
+      this.changeOrder(false)
+    },
+    formReset () {
+      this.setProgramId(-1)
+      this.name = ''
+      this.phone = ''
+      this.email = ''
+      this.isPrice = false
+      this.valid = false
+      this.comment = ''
+      this.price = ''
     }
   },
   watch: {

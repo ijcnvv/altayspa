@@ -61,12 +61,12 @@ export default {
   },
   data: () => ({
     valid: false,
-    permission: false,
+    permission: true,
     name: '',
     phone: '',
     nameRules: [
       v => !!v || 'Необходимо указать имя',
-      v => v.length >= 2 || 'Имя должно содержать не менее 2х символов'
+      v => /^.{2,}/.test(v) || 'Имя должно содержать не менее 2х символов'
     ],
     phoneRules: [
       v => !!v || 'Необходимо указать телефон',
