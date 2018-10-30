@@ -11,14 +11,14 @@ include ../tools/mixins.pug
           :items="navList"
           v-model="nav"
           dark
-          @change="onChange(true)")
+          @change="onChangeNav")
       v-flex.xs6
         v-select.program__mobile-nav-select(
           color="orange darken-3"
           :items="subNavList"
           v-model="subnav"
           dark
-          @change="onChange")
+          @change="onChangeSubNav")
     v-layout.row
       +e.NAV.nav.mb-4
           +e.UL.nav-list
@@ -139,6 +139,7 @@ export default {
 
     setNav (value) {
       this.nav = value
+      this.subnav = this.subNavList[0]
     },
 
     setSubNav (value) {
@@ -152,9 +153,14 @@ export default {
       }
     },
 
-    onChange (nav = false) {
-      if(nav) this.subnav = this.subNavList[0]
+    onChangeNav () {
+      this.subnav = this.subNavList[0]
+      this.$vuetify.goTo('#spa', {
+        offset: -60
+      })
+    },
 
+    onChangeSubNav () {
       this.$vuetify.goTo('#spa', {
         offset: -60
       })
