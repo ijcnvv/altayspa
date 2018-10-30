@@ -14,9 +14,8 @@ include ../tools/mixins.pug
           v-btn.ma-0.mt-4(color="orange darken-3 white--text" large @click.prevent="showDialog(item)") Подробнее
   v-dialog(v-model="dialog" width="auto")
     +e.V-CARD.modal-text
-      v-card-title
-        span.headline {{ dialogObj.title }}
       v-card-text
+        +e.H2.modal-title {{ dialogObj.title }}
         div(v-html="dialogObj.desc")
         div.mt-4 Узнайте подробности по телефону {{ city.phone }} или закажите обратный звонок и мы свяжемся с вами в ближайшее время
         v-btn.ma-0.mt-3(color="orange darken-3 white--text" @click.prevent="scrolling") Заказать звонок

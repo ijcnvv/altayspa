@@ -1,8 +1,14 @@
 .inner {
   max-width: @screen-lg;
-  min-width: @screen-lg;
   width: @screen-lg;
   margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media (max-width: @screen-sm) {
+    width: 100%;
+    max-width: 100%;
+  }
 
   &_md{
     max-width: @screen-md;

@@ -8,15 +8,16 @@ include ../tools/mixins.pug
       +e.wrap(v-for="(item, index) in feedbacks" :key="index")
         +e.item
           +e.img(:style="'background-image: url(' + item.img + ')'")
-          +e.quote._t
-            v-icon(large) format_quote
           +e.container
-            +e.H3.title {{ item.name }}
-            +e.text {{ item.desc }}
-          +e.quote._b
-            v-icon(large) format_quote
+            +e.quote._t
+              v-icon(large) format_quote
+            +e.block
+              +e.H3.title {{ item.name }}
+              +e.text {{ item.desc }}
+            +e.quote._b
+              v-icon(large) format_quote
   v-layout.row.justify-center.mt-4(v-if="isLink")
-    +e.A.more(:href="feedbackLink" target="_blank") 
+    +e.A.more(:href="feedbackLink" target="_blank")
       v-btn(color="orange darken-3 white--text") Больше отзывов
 </template>
 

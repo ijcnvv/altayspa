@@ -8,6 +8,10 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: @screen-sm) {
+      flex-wrap: wrap;
+    }
   }
 
   &__img {
@@ -19,9 +23,20 @@
     background-repeat: no-repeat;
     margin-right: 30px;
     box-shadow: @shadow-sm;
+
+    @media (max-width: @screen-sm) {
+      margin-right: 0;
+    }
   }
 
   &__quote {
+
+    @media (max-width: @screen-sm) {
+      i {
+        font-size: @size-md !important;
+      }
+    }
+
     &_t {
       align-self: flex-start;
     }
@@ -34,12 +49,28 @@
   }
 
   &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__block {
     max-width: @screen-sm;
     padding: 30px 10px;
+
+    @media (max-width: @screen-sm) {
+      width: 100%;
+      padding: 0 5px;
+    }
   }
 
   &__text {
     hyphens: auto;
     margin-top: 0.5em;
+  }
+
+  &__title {
+    @media (max-width: @screen-sm) {
+      font-size: @size-sm;
+    }
   }
 }

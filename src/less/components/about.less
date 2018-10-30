@@ -1,7 +1,14 @@
 .about {
+  padding-bottom: 10px;
+
   &__list {
     display: flex;
+
+    @media (max-width: @screen-sm) {
+      flex-wrap: wrap;
+    }
   }
+
   &__item {
     display: flex;
     flex-direction: column;
@@ -10,14 +17,26 @@
     width: 25%;
     padding-left: 20px;
     padding-right: 20px;
+    margin-bottom: 30px;
+
+    @media (max-width: @screen-sm) {
+      width: 50%;
+
+    }
   }
+
   &__ico {
     color: @color-default;
   }
+
   &__text {
     display: inline-flex;
-    padding-top: 20px;    
+    padding-top: 20px;
     text-align: center;
     font-size: @size-sm + 2;
+
+    @media (max-width: @screen-sm) {
+      font-size: @size-xs;
+    }
   }
 }

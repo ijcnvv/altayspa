@@ -16,5 +16,20 @@
     width: @screen-sm;
     padding: 20px;
     box-shadow: @shadow-sm;
+
+    @media (max-width: @screen-sm) {
+      width: 100%;
+      max-height: 90vh;
+      padding: 0;
+      overflow: auto;
+    }
+  }
+
+  &__title {
+    font-weight: normal;
+
+    @media (max-width: @screen-sm) {
+      font-size: @size-md - 2;
+    }
   }
 }

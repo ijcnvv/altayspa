@@ -24,8 +24,18 @@
     height: 50px;
   }
 
+  .v-label {
+    @media (max-width: @screen-sm) {
+      font-size: @size-xs;
+    }
+  }
+
   .v-input {
     margin-top: 8px;
+
+    @media (max-width: @screen-sm) {
+      font-size: @size-xs;
+    }
 
     &__slot {
       flex-direction: column;

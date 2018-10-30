@@ -18,6 +18,13 @@
     padding-top: 60px;
   }
 
+  &__inner {
+    @media (max-width: @screen-sm) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
   &__list {
     display: flex;
     flex-wrap: wrap;
@@ -42,6 +49,11 @@
 
     &:hover {
       background-color: @color-default;
+    }
+
+    @media (max-width: @screen-sm) {
+      font-size: @size-xs - 1;
+      height: 50px;
     }
   }
 }

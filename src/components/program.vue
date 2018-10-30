@@ -1,9 +1,22 @@
 <template lang="pug">
 include ../tools/mixins.pug
 +b.SECTION.program#spa(v-if="isProgram")
-  .inner.main__title-wrap
-    h2.main__title SPA меню
   .inner
+    .main__title-wrap
+      h2.main__title SPA меню
+    +e.mobile-nav
+      v-flex.xs6
+        v-select.program__mobile-nav-select(
+          color="orange darken-3"
+          :items="navList"
+          v-model="nav"
+          dark)
+      v-flex.xs6
+        v-select.program__mobile-nav-select(
+          color="orange darken-3"
+          :items="subNavList"
+          v-model="subnav"
+          dark)
     v-layout.row
       +e.NAV.nav.mb-4
           +e.UL.nav-list
@@ -12,8 +25,8 @@ include ../tools/mixins.pug
               :key="index"
               @click="setNav(item)"
               :class="{'program__nav-item_active': nav == item}") {{ item }}
-    v-layout.row
-      v-flex.sm3
+    v-layout.row.wrap
+      v-flex.sm3.xs12
         +e.aside
           +e.NAV.sub-nav
               +e.UL.sub-nav-list
@@ -22,13 +35,13 @@ include ../tools/mixins.pug
                   :key="index"
                   @click="setSubNav(item)"
                   :class="{'program__sub-nav-item_active': subnav == item}") {{ item }}
-          +e.sort.mt-4.ml-2.mr-5
+          +e.sort
             v-select(
               color="orange darken-3"
               :items="sortList"
               v-model="sort"
               label="Сортировать")
-      v-flex.sm9
+      v-flex.sm9.xs12
         +e.container
           +e.UL.list
             +e.item(v-for="(item, index) in listSorted" :key="index")
@@ -37,7 +50,7 @@ include ../tools/mixins.pug
                 +e.V-CARD-TITLE.body
                   +e.H3.title.mb-2 {{ item.title }}
                   +e.timetable.mb-2(v-html="item.timetable" v-if="item.timetable.length")
-                  v-layout.row.mt-2.justify-space-between.align-end
+                  +e.footer
                     v-flex
                       +e.time
                         font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','clock']")
@@ -45,7 +58,7 @@ include ../tools/mixins.pug
                       +e.price
                         font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
                         span {{ item.price }}
-                    v-btn.ma-0(color="orange darken-3 white--text" @click.prevent="showDialog(item.id)") Подробнее
+                    +e.V-BTN.btn.ma-0(color="orange darken-3 white--text" @click.prevent="showDialog(item.id)") Подробнее
   v-dialog(v-model="modalMore" width="600")
     +e.V-CARD.modal-text(v-if="modalMore")
       v-card-text
@@ -55,7 +68,7 @@ include ../tools/mixins.pug
         div.mb-3(v-if="dialogObj.timetable.length")
           +e.H4.sub-title Расписание
           +e.timetable(v-html="dialogObj.timetable")
-        v-layout.row.justify-space-between.align-end
+        +e.footer
           v-flex
             +e.time
               font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','clock']")
@@ -63,7 +76,7 @@ include ../tools/mixins.pug
             +e.price
               font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
               span {{ dialogObj.price }}
-          v-btn.ma-0(color="orange darken-3 white--text" @click="showOrder") Заказать сертификат
+          +e.V-BTN.btn.ma-0(color="orange darken-3 white--text" @click="showOrder") Заказать сертификат
 </template>
 
 <script>
@@ -89,7 +102,7 @@ export default {
       value:'title'
     },
      {
-      text:'По продолжительности',
+      text:'По времени',
       value:'time'
     },
      {
@@ -129,9 +142,6 @@ export default {
 
     setSubNav (value) {
       this.subnav = value
-      this.$vuetify.goTo('#spa', {
-        offset: -60
-      })
     },
 
     navReset (){
@@ -143,6 +153,18 @@ export default {
   },
 
   watch: {
+    nav () {
+      this.$vuetify.goTo('#spa', {
+        offset: -60
+      })
+    },
+
+    subnav () {
+      this.$vuetify.goTo('#spa', {
+        offset: -60
+      })
+    },
+
     sort () {
       window.localStorage.setItem('sort', this.sort)
     },

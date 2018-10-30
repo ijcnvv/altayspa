@@ -2,9 +2,8 @@
   section.modal(:class="{'modal_active': dialog}")
     v-dialog(v-model="dialog" persistent)
       v-card.modal__body(v-if="dialog")
-        v-card-title
-          span.headline Заказать подарочный сертификат
         v-card-text
+          h2.modal__title Заказать подарочный сертификат
           v-form.form(
             v-model="valid"
             ref="form")

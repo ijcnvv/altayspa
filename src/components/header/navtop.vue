@@ -2,7 +2,7 @@
 include ../../tools/mixins.pug
 +b.NAV.nav-top
   +e.wrap
-    v-layout.row.inner
+    +e.inner.inner
       +e.UL.list.justify-center
         +e.item(v-for="(el, i) in menu" :key="i")
           +e.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}

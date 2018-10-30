@@ -6,6 +6,10 @@ html {
   &.out{
     overflow: hidden;
     margin-right: 17px;
+
+    @media (max-width: @screen-sm) {
+      margin-right: 0;
+    }
   }
 }
 
@@ -17,8 +21,9 @@ body {
   color: @color-black;
   line-height: 1.5;
   box-sizing: border-box;
-  @media(max-width: @screen-xs) {
-    font-size: @size-xs + 2;
+
+  @media(max-width: @screen-sm) {
+    font-size: @size-xs;
   }
 }
 
@@ -56,15 +61,15 @@ ul{
     align-items: center;
     justify-content: center;
     margin: 0;
-  }  
+  }
 }
 
 .fade {
-  &-enter-active, 
+  &-enter-active,
   &-leave-active {
     transition: opacity .5s;
   }
-  &-enter, 
+  &-enter,
   &-leave-to {
     opacity: 0;
   }

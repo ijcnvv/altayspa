@@ -1,7 +1,7 @@
 <template lang="pug">
-header.header 
+header.header
   v-layout.row.inner(align-center justify-space-between color="borrow darken-4 white--text")
-    v-flex.xs2
+    v-flex.xs6.sm2
       v-select.header__city(
         color="orange darken-3"
         :items="cities"
@@ -36,7 +36,7 @@ export default {
   methods: {
     ...mapMutations({
       setCity: 'cities/setCity'
-    })    
+    })
   }
 }
 </script>

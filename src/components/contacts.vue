@@ -3,7 +3,7 @@ include ../tools/mixins.pug
 +b.SECTION.contacts#contacts
   .inner.main__title-wrap
     h2.main__title Контакты
-  v-layout.row.inner.justify-center
+  v-layout.row.inner.justify-center.wrap
     v-flex.xs12.sm6
       +e.block
         +e.P.desc Остались вопросы? Нужна помошь или консультация? Оставьте свои контактные данные и мы вам перезвоним в ближайшее время!
@@ -30,15 +30,14 @@ include ../tools/mixins.pug
               label='Даю согласие на обработку моих персональных данных на основании Федерального закона №152-ФЗ "О персональных данных" от 27.07.2006 г.'
               :rules="permissionRules"
               v-model="permission")
-          v-layout.row.justify-start
-            v-btn.ma-0.mt-4(color="orange darken-3 white--text" large @click.prevent="onSubmit" :disabled="!valid") Отправить
+          +e.send-wrap
+            v-btn.ma-0(color="orange darken-3 white--text" @click.prevent="onSubmit" :disabled="!valid") Отправить
         +e.H3.sub-title Наш адрес
         +e.CONTACT-INFO.info
     v-flex.xs12.sm6
       yandex-map.contacts__map(
         :coords="city.coords"
         zoom="16"
-        style="width: 600px; height: 600px;"
         :scroll-zoom="false")
         ymap-marker(
           marker-id="1"

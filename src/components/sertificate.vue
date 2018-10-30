@@ -1,18 +1,19 @@
 <template lang="pug">
 include ../tools/mixins.pug
 +b.SECTION.sertificate#sertificate
-  .inner.main__title-wrap
-    h2.main__title Подарочный сертификат
-  v-layout.row.inner
-    v-flex.sm6
-      +e.img  
-    +e.V-FLEX.info.sm6.align-self-center
-      +e.title.mb-3 Подарочный сертификат - лучший подарок<br>для любимых
-      +e.UL.list
-        +e.item(v-for="(item, i) in list" :key="i" v-if="item.exept != city")
-          font-awesome-icon.fa-2x.fa-fw.about__ico(:icon="item.ico")
-          +e.SPAN.text(v-html="item.title") 
-      v-btn.mt-4(color="orange darken-3 white--text" large @click.prevent="showOrder(true)") заказать сертификат
+  .inner
+    .main__title-wrap
+      h2.main__title Подарочный сертификат
+    v-layout.row.wrap
+      v-flex.sm6.xs12
+        +e.img
+      +e.V-FLEX.info.sm6.align-self-center.xs12
+        +e.title.mb-3 Подарочный сертификат - лучший подарок для любимых
+        +e.UL.list
+          +e.item(v-for="(item, i) in list" :key="i" v-if="item.exept != city")
+            font-awesome-icon.fa-2x.fa-fw.about__ico(:icon="item.ico")
+            +e.SPAN.text(v-html="item.title")
+        v-btn.mt-4(color="orange darken-3 white--text" large @click.prevent="showOrder(true)") заказать сертификат
 </template>
 
 <script>
