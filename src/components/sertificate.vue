@@ -13,7 +13,7 @@ include ../tools/mixins.pug
           +e.item(v-for="(item, i) in list" :key="i" v-if="item.exept != city")
             font-awesome-icon.fa-2x.fa-fw.about__ico(:icon="item.ico")
             +e.SPAN.text(v-html="item.title")
-        v-btn.mt-4(color="orange darken-3 white--text" large @click.prevent="showOrder(true)") заказать сертификат
+        v-btn.mt-4(v-if="isProgram" color="orange darken-3 white--text" large @click.prevent="showOrder(true)") заказать сертификат
 </template>
 
 <script>
@@ -46,8 +46,14 @@ export default {
 
   computed: {
     ...mapGetters({
+      city: 'cities/currentName',
+      programs: 'programs/currenCityList',
       city: 'cities/currentName'
-    })
+    }),
+
+    isProgram () {
+      return this.programs(this.city).length > 0
+    }
   },
 
   methods: {

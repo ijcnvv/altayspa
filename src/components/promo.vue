@@ -17,7 +17,10 @@ include ../tools/mixins.pug
       v-card-text
         +e.H2.modal-title {{ dialogObj.title }}
         div(v-html="dialogObj.desc")
-        div.mt-4 Узнайте подробности по телефону {{ city.phone }} или закажите обратный звонок и мы свяжемся с вами в ближайшее время
+        div.mt-4 
+          span Узнайте подробности по телефону
+          +e.A.link.link(:href="'tel:' + city.phone") {{ city.phone }}
+          span или закажите обратный звонок и мы свяжемся с вами в ближайшее время
         v-btn.ma-0.mt-3(color="orange darken-3 white--text" @click.prevent="scrolling") Заказать звонок
 </template>
 

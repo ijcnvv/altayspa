@@ -3,17 +3,17 @@ include ../tools/mixins.pug
 +b.contacts
   +e.list
     +e.item
-      +e.SPAN.name
+      +e.SPAN.icon
         font-awesome-icon(icon="map-marker-alt" class='fa-fw')
-      +e.SPAN.link  {{ address }}
+      +e.SPAN.link {{ address }}
     +e.item(v-if="city.time")
-      +e.SPAN.name
+      +e.SPAN.icon
         font-awesome-icon(:icon="['far','clock']" class='fa-fw')
-      +e.SPAN.link  {{ city.time }}
+      +e.SPAN.link {{ city.time }}
     +e.item(v-if="city.phone")
-      +e.SPAN.name
+      +e.SPAN.icon
         font-awesome-icon(icon="phone-volume" class='fa-fw')
-      +e.SPAN.link  {{ city.phone }}
+      +e.A.link.link(:href="'tel:' + city.phone") {{ city.phone }}
   +b.social._default
     +e.UL.list
       +e.item(v-if="city.vk")
