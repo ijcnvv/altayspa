@@ -8,9 +8,11 @@ header.header
         v-model="city"
         label="Ваш город"
         dark)
-    router-link(
-      :to="{name: 'admin'}"
-      class="link header__enter") Войти
+    router-link.link.header__enter(v-if="isMain" :to="{name: 'admin'}")
+      span Войти
+    router-link.link.header__enter(v-else :to="{name: 'home'}")
+      v-icon(color="white") arrow_back
+      span.ml-2 На главную
 </template>
 
 <script>
@@ -30,6 +32,10 @@ export default {
       set (value) {
         this.setCity(value)
       }
+    },
+
+    isMain () {
+      return this.$route.name == 'home'
     }
   },
 

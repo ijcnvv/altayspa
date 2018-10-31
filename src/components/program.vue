@@ -18,7 +18,7 @@ include ../tools/mixins.pug
           :items="subNavList"
           v-model="subnav"
           dark
-          @change="onChangeSubNav")
+          @change="scrolling")
     v-layout.row
       +e.NAV.nav.mb-4
           +e.UL.nav-list
@@ -46,7 +46,7 @@ include ../tools/mixins.pug
       v-flex.sm9.xs12
         +e.container
           +e.UL.list
-            +e.item(v-for="(item, index) in listSorted" :key="index")
+            +e.item(v-for="(item, index) in listSorted" :key="index" :class="{'program__item_hidden': !showAll && index > 3}")
               +e.V-CARD.card
                 v-img.program__img(:src="item.img")
                 +e.V-CARD-TITLE.body
@@ -61,6 +61,8 @@ include ../tools/mixins.pug
                         font-awesome-icon.fa-fw.program__ico.mr-2(:icon="['fas','ruble-sign']")
                         span {{ item.price }}
                     +e.V-BTN.btn.ma-0(color="orange darken-3 white--text" @click.prevent="showDialog(item.id)") Подробнее
+          +e.show-more(v-if="showLoadMore")
+            v-btn.ma-0(color="orange darken-3 white--text" large @click.prevent="showAll = true") Показать все
   v-dialog(v-model="modalMore" width="600")
     +e.V-CARD.modal-text(v-if="modalMore")
       v-card-text
@@ -87,7 +89,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faRubleSign, faClock } from '@fortawesome/free-solid-svg-icons'
 import ending from '../tools/ending.js'
-import appOrder from './orderSertificate'
 
 library.add(faClock, faRubleSign)
 
@@ -98,6 +99,7 @@ export default {
 
   data: () => ({
     modalMore: false,
+    showAll: false,
     sort: window.localStorage.getItem('sort') || 'title',
     sortList: [{
       text:'По названию',
@@ -140,10 +142,12 @@ export default {
     setNav (value) {
       this.nav = value
       this.subnav = this.subNavList[0]
+      this.scrolling()
     },
 
     setSubNav (value) {
       this.subnav = value
+      this.scrolling()
     },
 
     navReset (){
@@ -155,12 +159,10 @@ export default {
 
     onChangeNav () {
       this.subnav = this.subNavList[0]
-      this.$vuetify.goTo('#spa', {
-        offset: -60
-      })
+      this.scrolling()
     },
 
-    onChangeSubNav () {
+    scrolling () {
       this.$vuetify.goTo('#spa', {
         offset: -60
       })
@@ -246,6 +248,10 @@ export default {
         if (a[s] < b[s]) return -1
         return 0
       })
+    },
+
+    showLoadMore () {
+      return !this.showAll && this.programList.length > 4
     }
   }
 }

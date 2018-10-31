@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Admin from '../components/admin'
+import Admin from '../components/admin/admin'
 import Home from '../components/home'
 import Empty from '../components/404'
 
@@ -14,7 +14,7 @@ const routes = [{
     path: '/admin',
     component: Admin,
     name: 'admin'
-  }, 
+  },
   {
     path: '*',
     component: Empty,

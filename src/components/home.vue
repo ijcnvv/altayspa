@@ -22,10 +22,10 @@ import appIntro from './intro/intro'
 import appAbout from './intro/about'
 import appProgram from './program'
 import appGallery from './gallery'
-import appContacts from './contacts'
+import appContacts from './contacts/contacts'
 import appFeedback from './feedback'
-import appSertificate from './sertificate'
-import appOrderSertificate from './orderSertificate'
+import appSertificate from './sertificate/sertificate'
+import appOrderSertificate from './sertificate/orderSertificate'
 
 export default {
   components: {

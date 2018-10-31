@@ -1,5 +1,5 @@
 <template lang="pug">
-include ../tools/mixins.pug
+include ../../tools/mixins.pug
 +b.contacts
   +e.list
     +e.item

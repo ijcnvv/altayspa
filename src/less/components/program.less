@@ -1,6 +1,9 @@
 .program {
   position: relative;
-  padding-bottom: 20px;
+
+  &__show-more {
+    text-align: center;
+  }
 
   &__mobile-nav {
     display: none;
@@ -95,6 +98,10 @@
     @media (max-width: @screen-sm) {
       width: 100%;
       margin-bottom: 20px;
+    }
+
+    &_hidden {
+      display: none;
     }
   }
 

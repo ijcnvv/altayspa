@@ -1,5 +1,5 @@
 <template lang="pug">
-include ../tools/mixins.pug
+include ../../tools/mixins.pug
 +b.SECTION.sertificate#sertificate
   .inner
     .main__title-wrap

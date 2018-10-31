@@ -17,7 +17,7 @@ include ../tools/mixins.pug
 
 <script>
 import {mapGetters} from 'vuex'
-import contactInfo from './contactInfo'
+import contactInfo from './contacts/contactInfo'
 
 export default {
   components: {
@@ -34,7 +34,7 @@ export default {
     scrolling (value) {
       if (document.querySelector(value)) {
         this.$vuetify.goTo(value,{
-          offset: -60
+          offset: -55
         })
       }
     }

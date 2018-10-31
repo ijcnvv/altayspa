@@ -1,5 +1,5 @@
 <template lang="pug">
-include ../tools/mixins.pug
+include ../../tools/mixins.pug
 +b.SECTION.contacts#contacts
   .inner.main__title-wrap
     h2.main__title Контакты

@@ -27,13 +27,19 @@
 
   &__list {
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
     list-style: none;
+
+    @media (max-width: @screen-sm) {
+      justify-content: space-around;
+    }
   }
 
   &__item {
-    width: ~"calc(100% / 5)";
+    width: 20%;
+    @media (max-width: @screen-sm) {
+      width: auto;
+    }
   }
 
   &__link {
@@ -54,6 +60,8 @@
     @media (max-width: @screen-sm) {
       font-size: @size-xs - 1;
       height: 50px;
+      padding-left: 5px;
+      padding-right: 5px;
     }
   }
 }

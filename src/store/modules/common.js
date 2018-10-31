@@ -2,29 +2,26 @@ export default {
   namespaced: true,
   state: {
     showOrderSertificate: false,
-    showRegisterOnline: false,
-    processiong: false,
-    someError: false
+    processing: false,
+    error: null
   },
   getters: {
-    showOrder (state) {
-      return state.showOrderSertificate
-    },
-    showRegister (state) {
-      return state.showRegisterOnline
-    }
+    showOrder: state => state.showOrderSertificate,
+    getProcessing: state => state.processing,
+    getError: state => state.error
   },
   mutations: {
     changeOrder (state, payload) {
       state.showOrderSertificate = payload
     },
-    changeRegister (state, payload) {
-      state.showRegisterOnline = payload
-    }
-  },
-  actions: {
-    sendOrder ({commit}, payload) {
-      commit('changeOrder', payload)
+    setProcessing (state, payload) {
+      state.processing = payload
+    },
+    setError (state, payload) {
+      state.error = payload
+    },
+    cleanError (state) {
+      state.error = null
     }
   }
 }

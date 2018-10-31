@@ -3,7 +3,7 @@ include ../../tools/mixins.pug
 +b.NAV.nav-top
   +e.wrap
     +e.inner.inner
-      +e.UL.list.justify-center
+      +e.UL.list
         +e.item(v-for="(el, i) in menu" :key="i")
           +e.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}
 </template>
@@ -23,7 +23,7 @@ export default {
     scrolling (value) {
       if (document.querySelector(value)) {
         this.$vuetify.goTo(value, {
-          offset: -60
+          offset: -55
         })
       }
     }

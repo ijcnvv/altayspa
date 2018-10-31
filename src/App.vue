@@ -6,6 +6,7 @@ transition(mode="out-in" name="fade")
     app-footer.page__footer
     v-btn(color="orange darken-3" dark fixed bottom right fab v-show="showUpper" @click.prevent="$vuetify.goTo(0)")
       v-icon keyboard_arrow_up
+    v-alert.page__alert(type="error" transition="fade-transition" :value="error" dismissible @click.prevent="cleanError") {{ error }}
   section.page.page__city-select(v-else key="2")
     app-city
 </template>
@@ -14,7 +15,7 @@ transition(mode="out-in" name="fade")
 import appHeader from './components/header/header'
 import appFooter from './components/footer'
 import appCity from './components/citySelect'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   components: {
@@ -29,14 +30,19 @@ export default {
 
   computed: {
     ...mapGetters({
-      city: 'cities/current'
+      city: 'cities/current',
+      error: 'common/getError'
     }),
+
     showUpper () {
       return this.offsetTop > 700
     }
   },
 
   methods: {
+    ...mapMutations({
+      cleanError: 'common/cleanError'
+    }),
     onScroll (e) {
       this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
     }

@@ -17,6 +17,7 @@
             v-text-field(
               color="orange darken-3"
               label="Телефон для связи"
+              type="tel"
               :rules="phoneRules"
               v-model="phone"
               prepend-icon="phone"
@@ -24,6 +25,7 @@
             v-text-field(
               color="orange darken-3"
               label="Email"
+              type="email"
               :rules="emailRules"
               v-model="email"
               prepend-icon="email"
@@ -76,7 +78,7 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations, mapActions} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   data: () => ({
@@ -139,12 +141,9 @@ export default {
       changeOrder: 'order/showForm',
       setProgramId: 'order/setProgramId'
     }),
-    ...mapActions({
-      sendOrder: 'common/sendOrder'
-    }),
     onSubmit () {
-      this.sendOrder(false)
       this.formReset()
+      this.changeOrder(false)
     },
     onClose () {
       this.formReset()

@@ -17,7 +17,7 @@ include ../../tools/mixins.pug
 
 <script>
 import {mapGetters, mapMutations} from 'vuex'
-import contactInfo from '../contactInfo'
+import contactInfo from '../contacts/contactInfo'
 
 export default {
   components: {

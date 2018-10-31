@@ -1,3 +1,5 @@
+import 'vuetify/dist/vuetify.min.css'
+import './less/styles.less'
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
@@ -5,34 +7,34 @@ import router from './router'
 import Vuetify from 'vuetify'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { 
-  faMapMarkerAlt, 
-  faMortarPestle, 
-  faPhoneVolume,   
+import {
+  faMapMarkerAlt,
+  faMortarPestle,
+  faPhoneVolume,
   faLeaf,
   faHandHoldingHeart,
   faCar,
   faHandHoldingUsd
  } from '@fortawesome/free-solid-svg-icons'
-import { 
+import {
   faClock,
   faListAlt,
   faEdit
 } from '@fortawesome/free-regular-svg-icons'
-import { 
-  faVk, 
-  faOdnoklassniki, 
-  faInstagram, 
-  faPagelines 
+import {
+  faVk,
+  faOdnoklassniki,
+  faInstagram,
+  faPagelines
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
-  faCar, 
-  faHandHoldingUsd, 
-  faListAlt, 
-  faEdit, 
-  faMortarPestle, 
-  faLeaf, 
+  faCar,
+  faHandHoldingUsd,
+  faListAlt,
+  faEdit,
+  faMortarPestle,
+  faLeaf,
   faHandHoldingHeart,
   faPagelines,
   faVk,
@@ -45,10 +47,12 @@ library.add(
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.use(Vuetify)
+import fbConfig from './config/fb'
+import fb from 'firebase'
 
-import 'vuetify/dist/vuetify.min.css'
-import './less/styles.less'
+fb.initializeApp(fbConfig)
+
+Vue.use(Vuetify)
 
 new Vue({
   el: '#app',
