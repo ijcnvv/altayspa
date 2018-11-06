@@ -6,6 +6,24 @@
     margin-top: 10px;
   }
 
+  &__nav {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+
+    &-item {
+      &:not(:last-child) {
+        margin-right: 25px;        
+      }
+    }
+
+    &-text {
+      @media (max-width: @screen-sm) {
+        display: none;
+      }
+    }
+  }
+
   .v-messages {
     display: none;
   }

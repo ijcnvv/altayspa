@@ -1,4 +1,14 @@
 .promo {
+  @height: 500px;
+  @height-sm: 300px;
+
+  &_loading {
+    height: @height;
+
+    @media (max-width: @screen-sm) {
+      height: @height-sm;
+    }
+  }
 
   &__dots {
     .slider-dots();
@@ -13,16 +23,25 @@
     }
   }
 
+  &__list {
+    overflow: hidden;
+    height: @height;
+
+    @media (max-width: @screen-sm) {
+      height: @height-sm;
+    }
+  }
+
   &__item {
     position: relative;
     display: flex;
     align-items: center;
-    height: 500px;
+    height: @height;
     cursor: default;
     color: @color-white;
 
     @media (max-width: @screen-sm) {
-      height: 250px;
+      height: @height-sm;
     }
   }
 

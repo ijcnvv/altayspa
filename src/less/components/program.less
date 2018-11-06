@@ -1,6 +1,18 @@
 .program {
   position: relative;
 
+  &_loading {
+    height: 500px;
+  }
+
+  &__helper {
+    margin-left: 120px;
+
+    @media (max-width: @screen-sm) {
+      margin-left: 0;
+    }
+  }
+
   &__show-more {
     text-align: center;
   }
