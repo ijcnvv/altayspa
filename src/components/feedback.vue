@@ -4,7 +4,7 @@ include ../tools/mixins.pug
   .inner.main__title-wrap
     h2.main__title Отзывы
   .inner.slider
-    +e.SLICK.list(ref="slick" :options="slickOptions" :key="cityName")
+    +e.SLICK.list(ref="slick" :options="slickOptions" :key="cityId")
       +e.wrap(v-for="(item, index) in feedbacks" :key="index")
         +e.item
           +e.img(:style="'background-image: url(' + item.img + ')'")
@@ -34,7 +34,7 @@ export default {
     swiping: false,
     slickOptions: {
       slidesToShow: 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 7000,
       dots: true,
       arrows: false,
@@ -49,8 +49,8 @@ export default {
       list: 'feedback/currenCityList',
       city: 'cities/current'
     }),
-    cityName () {
-      return this.city.text
+    cityId () {
+      return this.city.id
     },
     feedbackLink () {
       return this.city.feedback
@@ -59,7 +59,7 @@ export default {
       return this.feedbackLink.length > 0
     },
     feedbacks () {
-      return this.list(this.cityName)
+      return this.list(this.cityId)
     },
     isFeedback () {
       return this.feedbacks.length > 0
