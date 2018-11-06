@@ -1,272 +1,203 @@
+import fb from 'firebase/app'
+import 'firebase/database'
+import 'firebase/storage'
 export default {
   namespaced: true,
   state: {
-    list: [
-      {
-        id: 1,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Расслабляющие',
-        img: '/img/program/dusha-stepei.jpg',
-        title: 'Душа степей',
-        desc: `Нежный запах цветков чабреца в сочетании с продолжительным массажем перенесет вас в заповедный мир природы, где царит блаженная тишина, гармония и радость жизни.<br>
-        • успокаивает, снимает нервное напряжение<br>
-        • расслабляет, «разгружает» мышцы и позвоночник<br>
-        • очищает, обновляет и питает кожу<br>
-        • снимает головную боль, боль в шее и спине<br>
-        • выравнивает структуру кожи, делая ее мягкой и гладкой`,
-        timetable: `1. Встреча гостя<br>
-        2. Сеанс арома-сауны<br>
-        3. Пилинг с сибирским чабрецом<br>
-        4. Глубокий массаж тела с маслом чабреца 90 минут <br>
-        5. Отдых, фиточай`,
-        time: 130,
-        price: 2500
-      },
-      {
-        id: 2,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Расслабляющие',
-        title: 'Гармония и восстановление',
-        img: '/img/program/гармония и восстановление.jpg',
-        desc: `Чувствуете усталость? Постоянно находитесь в напряжении? Настало время восстановить силы! • снимает усталость и "забитость" мышц<br>
-        • приводит тело в тонус и "подтягивает" кожу<br>
-        • расслабляет и прибавляет сил<br>
-        • успокаивает нервную систему<br>
-        • дарит чувство легкости и полного восстановления`,
-        timetable: `1. Встреча гостя<br>
-        2. Сеанс арома-сауны<br>
-        3. Глубокий ручной массаж тела 90 минут<br>
-        4. Отдых, фиточай`,
-        time: 110,
-        price: 1600
-      },
-      {
-        id: 3,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Расслабляющие',
-        title: 'Дикая ягода с массажем',
-        img: '/img/program/дикая ягода.jpg',
-        desc: `Окунитесь в ягодный коктейль эмоций! Подарите своему телу настоящее блаженство!<br>
-        • снимает усталость и напряжение в теле<br>
-        • увлажняет, питает и смягчает кожу <br>
-        • препятствует процессу увядания кожи<br>
-        • балансирует состояние сухой и жирной кожи <br>
-        • сужает поры и обладает мягким антибактериальным эффектом <br>
-        • придает коже тонус и сияние <br>
-        • поднимает настроение`,
-        timetable: `1. Встреча гостя <br>
-        2. Сеанс арома-сауны<br>
-        3. Мягкий скраб на основе диких таёжных ягод <br>
-        4. Глубокий массаж тела <br>
-        5. Отдых, фиточай`,
-        time: 110,
-        price: 2000
-      },
-      {
-        id: 4,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Расслабляющие',
-        title: 'Дикая ягода с релакс-уходом',
-        img: '/img/program/дикая ягода.jpg',
-        desc: `Окунитесь в ягодный коктейль эмоций! Подарите своему телу настоящее блаженство!<br>
-        • расслабляет<br>
-        • увлажняет, питает и смягчает кожу <br>
-        • препятствует процессу увядания кожи<br>
-        • балансирует состояние сухой и жирной кожи <br>
-        • сужает поры и обладает мягким антибактериальным эффектом <br>
-        • придает коже тонус и сияние <br>
-        • поднимает настроение`,
-        timetable: `1. Встреча гостя <br>
-        2. Сеанс арома-сауны<br>
-        3. Мягкий скраб на основе диких таёжных ягод <br>
-        4. Завершающий уход нежным молочком с соком брусники<br>
-        5. Отдых, фиточай`,
-        time: 70,
-        price: 1600
-      },
-      {
-        id: 5,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Расслабляющие',
-        title: 'Секреты Сибири',
-        img: '/img/program/секреты сибири.jpg',
-        desc: `Программа основана на знаниях сибирских знахарей: все травы собраны вручную вдали от поселений. Каждое растение сорвано в определенные часы и дни, когда оно имеет особую силу. Ваше тело насытится лекарственным составом, а кожа станет удивительно красивой, сияющей и наполненной жизнью!<br>
-        • высвобождает застойную энергию, выводит токсины<br>
-        • омолаживает и выравнивает кожу<br>
-        • улучшает обмен веществ<br>
-        • очищает чувства и мысли<br>
-        • снимает стресс и усталость<br>
-        • замедляет процессы старения`,
-        timetable: `1. Встреча гостя<br>
-        2. Сеанс арома-сауны<br>
-        3. Соляной пилинг с сибирскими травами<br>
-        4. Гидромассажная ванна с травяным сбором<br>
-        5. Глубокий массаж всего тела<br>
-        6. Отдых, фиточай`,
-        time: 140,
-        price: 3000
-      },
-      {
-        id: 6,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Косметические',
-        title: 'Березовый дух',
-        img: '/img/program/березовый дух.jpg',
-        desc: `Ваша кожа нуждается в заботливом уходе, интенсивном увлажнении и косметическом воздействии? Выбирайте "Березовый дух"!<br>
-        • Заботливо ухаживает, освежает и увлажняет кожу<br>
-        • убирает несовершенства кожи, следы постакне<br>
-        • стимулирует обмен веществ в организме<br>
-        • способствует уменьшению отеков<br>
-        • снимает усталость, нейтрализует негативные последствия стрессов
-        `,
-        timetable: `1. Встреча гостя<br>
-        2. Сеанс арома-сауны<br>
-        3. Березовый пилинг тела<br>
-        4. Укрепляющая маска-обёртывание с листьями березы<br>
-        5. Завершающий уход с березовым кремом<br>
-        6. отдых, фиточай
-        `,
-        time: 90,
-        price: 2000
-      },
-      {
-        id: 7,
-        city: 'Абакан',
-        nav: 'SPA для нее',
-        subnav: 'Стройный силуэт',
-        title: 'Стройность и грация',
-        img: '/img/program/стройность и грация.jpg',
-        desc: `Программа корректирует силуэт, улучшает состояние кожи и дарит исключительное удовольствие! <br>
-        • ускоряет обмен веществ и способствует похудению<br>
-        • интенсивно увлажняет и питает кожу<br>
-        • уменьшает объемы и формирует стройный силуэт<br>
-        • "включает" мощный дренажный эффект и устраняет отёки<br>
-        • сокращает признаки целлюлита<br>
-        • подтягивает контуры тела<br>
-        • разглаживает кожу, делает ее мягкой, эластичной и сияющей`,
-        timetable: `1. Встреча гостя<br>
-        2. Сеанс арома-сауны<br>
-        3. Прогревающий скраб на основе мёда<br>
-        4. Обёртывание-антицеллюлит (горячее/холодное)<br>
-        5. Погружение в солевую ванну<br>
-        6. Массаж для стройного силуэта (бедра, живот, ягодицы)<br>
-        7. Завершающий уход нежным молочком<br>
-        8. Отдых, фиточай`,
-        time: 160,
-        price: 3500
-      },
-      {
-        id: 8,
-        city: 'Абакан',
-        nav: 'SPA для него',
-        subnav: 'Расслабляющие',
-        title: 'Источник силы',
-        img: '/img/program/источник силы.jpg',
-        desc: `Eжегодно на Алтай за этой процедурой прилетают тысячи людей из разных уголков мира. Теперь энергия и сила алтайских пант доступны здесь - в «Алтайской здравнице»!<br>
-        • увеличивает работоспособность и выносливость<br>
-        • повышает мужскую энергию<br>
-        • замедляет процессы старения, укрепляет мышцы<br>
-        • снимает нервное и физическое напряжение <br>
-        • укрепляет иммунитет`,
-        timetable: `1. Встреча гостя<br>
-        2. Погружение в пантовую ванну<br>
-        3. Глубокий ручной массаж тела с пантовым концентратом<br>
-        4. Отдых, фиточай`,
-        time: 90,
-        price: 2000
-      },
-      {
-        id: 9,
-        city: 'Абакан',
-        nav: 'Для двоих',
-        subnav: 'Расслабляющие',
-        title: 'Иван-да-Марья',
-        img: '/img/program/иван-да-марья.jpg',
-        desc: `Программа "Иван-да-Марья" разработана с учетом всех особенностей женского и мужского организмов. Можете не сомневаться, вы оба останетесь в восторге!`,
-        timetable: `Для нее:<br>
-        1. Встреча гостя <br>
-        2. Погружение в пихтовую ванну <br>
-        3. Солевой пилинг тела <br>
-        4. Нежное медовое обертывание <br>
-        5. Завершающий уход с кремом <br>
-        6. Отдых, фиточай<br><br>
-        Для него:<br>
-        1. Встреча гостя <br>
-        2. Сеанс арома-сауны<br>
-        3. Глубокий ручной массаж тела <br>
-        4. Погружение в пихтовую ванну <br>
-        5. Отдых, фиточай`,
-        time: 100,
-        price: 5000
-      },
-      {
-        id: 10,
-        city: 'Абакан',
-        nav: 'SPA-девичники',
-        subnav: 'Расслабляющие',
-        title: 'Сезонная программа',
-        img: '/img/program/спа-девичники.jpg',
-        desc: `Проводите время с подругами чаще, отдыхайте на СПА-девичниках и делитесь секретами и маленькими радостями с любимыми в нашем эко-интерьере с приятной энергетикой.<br>
-        Цена указана для одной персоны.`,
-        timetable: `1. Встреча гостей<br>
-        2. Сеанс арома-сауны<br>
-        2. Релакс-массаж с тёплым маслом <br>
-        3. Отдых, фиточай`,
-        time: 60,
-        price: 700
-      },
-      {
-        id: 11,
-        city: 'Абакан',
-        nav: 'Массаж',
-        subnav: 'Для тела',
-        title: 'Общеоздоровительный массаж',
-        img: '/img/program/массаж.jpg',
-        desc: `Это массаж всего тела с проработкой глубоко лежащих мышц. <br>
-        • снимает спазм в мышцах<br>
-        • уменьшает боль в теле<br>
-        • улучшает состояние кожи, делая ее более подтянутой и упругой<br>
-        • нормализует обмен веществ и сон<br>
-        • прибавляет силы на новые свершения, улучшает самооценку и настроение`,
-        timetable: `1.	Массаж шейно-воротниковой зоны<br>
-        2. Массаж грудного отдела<br>
-        3. Массаж поясничного отдела<br>
-        4. Массаж ягодичных мышц и области живота<br>
-        5. Массаж верхних и нижних конечностей`,
-        time: 60,
-        price: 1200
-      },
-      {
-        id: 12,
-        city: 'Абакан',
-        nav: 'Дополнительно',
-        subnav: 'Для кожи',
-        title: 'Арома-сауна',
-        img: '/img/program/арома-сауна.jpg',
-        desc: `• Очищает поры<br>
-        • Повышает иммунитет<br>
-        • Укрепляет нервную систему<br>
-        • Снижает вес<br>
-        • Улучшает состояние кожи<br>
-        • Укрепляет сердечно-сосудистую и дыхательную системы`,
-        timetable: ``,
-        time: 20,
-        price: 400
-      }
-    ]
+    loading: false,
+    list: [],
+    nav: [
+      'SPA для нее',
+      'SPA для него',
+      'Для двоих',
+      'SPA-девичники',
+      'Массаж',
+      'Дополнительно'
+    ],
+    subnav: []
   },
   getters: {
-    list (state) {
-      return state.list
+    list: state => state.list,
+    nav: state => state.nav,
+    subnav: state => state.subnav,
+    getLoading: state => state.loading,
+    currenCityList: (state, getters) => city => getters.list.filter(item => item.city == city)
+  },
+  mutations: {
+    addSubnav (state, payload) {
+      state.subnav.push(payload)
     },
-    currenCityList (state, getters) {
-      return city => getters.list.filter(item => item.city == city)
+    delSubnav (state, payload) {
+      const index = state.subnav.findIndex(el => el.value === payload)
+      if(index >= 0) state.subnav.splice(index, 1)
+    },
+    makeSubnavList (state, payload) {
+      state.subnav = payload
+    },
+    addProgram (state, payload) {
+      state.list.push(payload)
+    },
+
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+
+    makeProgramList (state, payload) {
+      state.list = payload
+    },
+
+    delProgram (state, payload) {
+      const index = state.list.findIndex(el => el.id === payload)
+      if(index >= 0) state.list.splice(index, 1)
+    }
+  },
+  actions: {
+    async addSubnav ({commit, rootGetters}, payload) {
+      if (rootGetters['common/getProcessing'] !== false) return false
+
+      commit('common/setProcessing', true, {root: true})
+      commit('common/cleanError', null, {root: true})
+
+      try {
+        const Obj = await fb.database().ref('subnav').push(payload),
+          id = Obj.key,
+          subnav = {
+            text: payload,
+            value: id
+          }
+ 
+        commit('addSubnav', subnav)
+        commit('common/setProcessing', false, {root: true})
+
+      } catch (error) {
+
+        commit('common/setError', error.message, {root: true})
+        commit('common/setProcessing', false, {root: true})
+        throw error
+      }  
+    },
+    async delSubnav ({commit, rootGetters}, payload) {
+      if (rootGetters['common/getProcessing'] !== false) return false
+
+      commit('common/setProcessing', true, {root: true})
+      commit('common/cleanError', null, {root: true})
+
+      try {
+        await fb.database().ref('subnav').child(payload).remove()
+
+        commit('common/setProcessing', false, {root: true})
+        commit('delSubnav', payload)
+
+      } catch (error) {
+
+        commit('common/setError', error.message, {root: true})
+        commit('common/setProcessing', false, {root: true})
+        throw error
+      } 
+    },
+    async delProgram ({commit, rootGetters}, payload) {
+      if (rootGetters['common/getProcessing'] !== false) return false
+
+      commit('common/setProcessing', true, {root: true})
+      commit('common/cleanError', null, {root: true})
+
+      try {        
+        await fb.database().ref('program').child(payload).remove()
+        await fb.storage().ref().child(`program/${payload}.jpg`).delete()
+
+        commit('common/setProcessing', false, {root: true})
+        commit('delProgram', payload)
+      } catch (error) {
+        commit('common/setError', error.message, {root: true})
+        commit('common/setProcessing', false, {root: true})
+        throw error
+      }  
+    },
+    
+    async addProgram ({commit, rootGetters}, payload) {
+
+      if (rootGetters['common/getProcessing'] !== false) return false
+
+      commit('common/setProcessing', true, {root: true})
+      commit('common/cleanError', null, {root: true})
+
+      try {
+        const Obj = await fb.database().ref('program').push(payload.program),
+          programId = Obj.key
+
+        await fb.storage().ref().child(`program/${programId}.jpg`).putString(payload.image, 'data_url')
+
+        const imgSrc = await fb.storage().ref().child(`program/${programId}.jpg`).getDownloadURL(),
+          program = {
+            ...payload.program,
+            src: imgSrc,
+            id: programId
+          }
+
+        await fb.database().ref('program').child(programId).update({
+          src: imgSrc
+        })
+ 
+        commit('addProgram', program)
+        commit('common/setProcessing', false, {root: true})
+
+      } catch (error) {
+
+        commit('common/setError', error.message, {root: true})
+        commit('common/setProcessing', false, {root: true})
+        throw error
+      }      
+    },
+
+    async fetchProgramList ({commit}) {
+      commit('setLoading', true)
+      commit('common/cleanError', null, {root: true})
+
+      try {
+        const program = await fb.database().ref('program').once('value'),      
+          programObj = program.val(),
+          subnav = await fb.database().ref('subnav').once('value'),      
+          subnavObj = subnav.val()
+        
+        let programArr = [],
+        subnavArr = []
+
+        if (programObj) {
+          programArr = Object.keys(programObj).reduce((arr, key) => {
+            
+            const obj = {
+              ...programObj[key],
+              id: key
+            }
+
+            arr.push(obj)
+            return arr          
+          }, [])
+        } 
+
+        if (subnavObj) {
+          subnavArr = Object.keys(subnavObj).reduce((arr, key) => {
+            
+            const obj = {
+              text: subnavObj[key],
+              value: key
+            }
+
+            arr.push(obj)
+            return arr          
+          }, [])
+        } 
+
+        commit('makeSubnavList', subnavArr)
+        commit('makeProgramList', programArr)
+        commit('setLoading', false)
+
+      } catch (error) {
+
+        commit('common/setError', error.message, {root: true})
+        commit('setLoading', false)
+        throw error
+      } 
     }
   }
 }
