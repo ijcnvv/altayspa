@@ -1,15 +1,18 @@
 <template lang="pug">
-include ../../tools/mixins.pug
-app-signin(v-if="!isAuth")
+main.main.main_flex
+  app-signin(v-if="!isAuth")
+  app-body(v-else)
 </template>
 
 <script>
 import appSignin from './signin'
+import appBody from './body'
 import {mapGetters} from 'vuex'
 
 export default {
   components: {
-    appSignin
+    appSignin,
+    appBody
   },
   computed: {
     ...mapGetters({
