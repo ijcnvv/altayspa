@@ -8,41 +8,53 @@ header.header
         v-model="city"
         label="Ваш город"
         dark)
-    router-link.link.header__enter(v-if="isMain" :to="{name: 'admin'}")
-      span Войти
-    router-link.link.header__enter(v-else :to="{name: 'home'}")
-      v-icon(color="white") arrow_back
-      span.ml-2 На главную
+    .header__nav
+      router-link.link.header__nav-item(v-if="isMain" :to="{name: 'admin'}")
+        span {{ adminLinkName }}      
+      router-link.link.header__nav-item(v-else :to="{name: 'home'}")
+        v-icon(color="white") arrow_back
+        span.header__nav-text.ml-2 На главную
+      a.link.header__nav-item(href="#" v-if="isAuth" @click.prevent="logout") Выйти
 </template>
 
 <script>
-import {mapGetters, mapMutations} from 'vuex'
+import {mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
   computed: {
     ...mapGetters({
-      cities: 'cities/list',
-      currentCity: 'cities/currentName'
+      cities: 'cities/listSmall',
+      currentCity: 'cities/currentId',
+      isAuth: 'user/getAuth'
     }),
 
     city: {
       get () {
         return this.currentCity
       },
-      set (value) {
-        this.setCity(value)
+      set (id) {
+        this.setCity(id)
       }
     },
 
     isMain () {
       return this.$route.name == 'home'
+    },
+    adminLinkName () {
+      return this.isAuth ? 'Админка' : 'Войти'
     }
   },
 
   methods: {
     ...mapMutations({
       setCity: 'cities/setCity'
-    })
+    }),
+    ...mapActions({
+      signOut: 'user/signOut'
+    }),
+    logout () {
+      this.signOut()
+    }
   }
 }
 </script>
