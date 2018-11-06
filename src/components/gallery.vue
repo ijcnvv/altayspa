@@ -77,7 +77,7 @@ export default {
   computed: {
     ...mapGetters({
       list: 'gallery/currenCityList',
-      city: 'cities/currentName'
+      city: 'cities/currentId'
     }),
 
     gallery () {
