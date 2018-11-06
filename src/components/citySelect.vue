@@ -8,7 +8,7 @@ include ../tools/mixins.pug
     +e.SPAN.logo-text Таёжный SPA
   +e.H1.subject Укажите Ваш город
   +e.UL.list
-    +e.item(v-for="(item, index) in list" :key="index" @click.prevent="setCity(item.text)")
+    +e.item(v-for="(item, index) in list" :key="index" @click.prevent="setCity(item.id)")
       img.city__img(:src="item.img")
       +e.H2.title {{ item.text }}
 </template>

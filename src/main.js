@@ -14,7 +14,8 @@ import {
   faLeaf,
   faHandHoldingHeart,
   faCar,
-  faHandHoldingUsd
+  faHandHoldingUsd,
+  faAward
  } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
@@ -42,15 +43,15 @@ library.add(
   faInstagram,
   faPhoneVolume,
   faClock,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faAward
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 import fbConfig from './config/fb'
-import fb from 'firebase'
-
-fb.initializeApp(fbConfig)
+import fb from 'firebase/app'
+import {mapActions} from 'vuex'
 
 Vue.use(Vuetify)
 
@@ -58,5 +59,26 @@ new Vue({
   el: '#app',
   store,
   router,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    fb.initializeApp(fbConfig)    
+    
+    fb.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.login(user)
+      }
+    })
+
+    this.fetchPromoList().then(()=>{
+      document.querySelector(".preloader").classList.remove("preloader_in")
+    })
+    this.fetchProgramList()
+  },
+  methods: {
+    ...mapActions({
+      login: 'user/autoSignIn',
+      fetchPromoList: 'promo/fetchPromoList',
+      fetchProgramList: 'programs/fetchProgramList'
+    })
+  }
 })

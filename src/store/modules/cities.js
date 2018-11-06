@@ -18,24 +18,24 @@ export default {
     {
       id: 2,
       text: 'Санкт-Петербург',
-      address: '',
+      address: '7-я Красноармейская, 30',
       img: '/img/city/sankt_peterburg.jpg',
-      coords: [53.720601, 91.433813],
-      phone: '',
-      time: '',
+      coords: [59.911448, 30.308152],
+      phone: '+7 (911) 925-51-05',
+      time: 'c 10:00 до 21:00',
       email: '',
-      vk: '',
+      vk: 'https://vk.com/altay_spa_spb',
       ok: '',
-      im: '',
-      feedback: ''
+      im: 'https://www.instagram.com/altay.spa.spb/',
+      feedback: 'https://vk.com/topic-171337360_39603675'
     },
     {
       id: 3,
       text: 'Тюмень',
-      address: 'ул. Свердлова, 5/2, 2 этаж',
+      address: 'ул. 50 лет Октября, 30',
       img: '/img/city/tyumen.jpg',
-      coords: [57.158337, 65.552904],
-      phone: '+7 (3452) 79-01-79',
+      coords: [57.149533, 65.572560],
+      phone: '+7 (967) 385-44-44',
       time: 'c 10:00 до 21:00',
       email: '',
       vk: 'https://vk.com/altay_spa',
@@ -46,18 +46,16 @@ export default {
     target: window.localStorage.getItem('city') || ''
   },
   getters: {
-    list (state) {
-      return state.list
-    },
-    target (state) {
-      return state.target
-    },
-    current (state, getters) {
-      return getters.list.find(value => value.text == getters.target)
-    },
-    currentName (state, getters) {
-      return getters.current ? getters.current.text : ''
-    }
+    list: state => state.list,
+    listSmall: (state, getters) => getters.list.map(el => {
+      return {
+        value: el.id,
+        text: el.text
+      }
+    }),
+    target: state => state.target,
+    current: (state, getters) => getters.list.find(value => value.id == getters.target),
+    currentId: (state, getters) => getters.current ? getters.current.id : -1
   },
   mutations: {
     setCity (state, payload) {
