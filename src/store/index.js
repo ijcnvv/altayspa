@@ -10,6 +10,7 @@ import programs from './modules/programs'
 import feedback from './modules/feedback'
 import order from './modules/order'
 import user from './modules/user'
+import contacts from './modules/contacts'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -25,7 +26,8 @@ export default new Vuex.Store({
     programs,
     feedback,
     order,
-    user
+    user,
+    contacts
   },
   strict: isDev
 });
