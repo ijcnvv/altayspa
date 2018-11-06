@@ -1,64 +1,122 @@
+import fb from 'firebase/app'
+import 'firebase/database'
+import 'firebase/storage'
+
 export default {
   namespaced: true,
   state: {
-    list: [{
-      title: 'Сезонная SPA-программа всего за 700 рублей',
-      subTitle: '',
-      src: '/img/promo.jpg',
-      city: 'Абакан',
-      desc: `Сезонная программа-знакомство с Таёжным SPA для восстановления сил и энергии<br><br>
-      1. сибирская  арома-сауна<br>
-      2. релакс-массаж с тёплым маслом кедровых орехов<br>
-      3. сибирский фиточай с ягодами<br><br>
-      Продолжительность 1 час`
-    },
-    {
-      title: 'Сеанс прессотерапии всего за 290 рублей',
-      subTitle: '* - при покупке курса',
-      src: '/img/promo2.jpg',
-      city: 'Абакан',
-      desc: `Прессотерапия - это аппаратный лимфодренажный массаж. Курс из 10 сеансов помогает:<br><br>
-      1. устранить "апельсиновую корку"<br>
-      2. убрать 3-5 см в талии и бёдрах<br>
-      3. снять хроническую тяжесть в ногах и сделать походку легкой<br>
-      4. убрать мышечное перенапряжение после физических нагрузок<br>
-      5. вывести жидкость, устранить отеки, укрепить стенки сосудов<br>
-      6. предупредить появление варикоза<br><br>
-      Продолжительность 1 сеанса: 40 минут<br>
-      В комплекте манжеты для талии и ног<br>
-      Обычная цена сеанса: 500 рублей<br>
-      Цена 290 рублей за сеанс действует при покупке абонемента на 10 посещений
-      `
-    },
-    {
-      title: 'Сезонная SPA-программа всего за 1000 рублей',
-      subTitle: '',
-      src: '/img/promo.jpg',
-      city: 'Тюмень',
-      desc: `Сезонная программа-знакомство с Таёжным SPA для восстановления сил и энергии<br><br>
-      1. сибирская  арома-сауна<br>
-      2. релакс-массаж с тёплым маслом кедровых орехов<br>
-      3. сибирский фиточай с ягодами<br><br>
-      Продолжительность 1 час`
-    },
-    {
-      title: 'Сезонная SPA-программа всего за 1000 рублей',
-      subTitle: '',
-      src: '/img/promo.jpg',
-      city: 'Санкт-Петербург',
-      desc: `Сезонная программа-знакомство с Таёжным SPA для восстановления сил и энергии<br><br>
-      1. сибирская  арома-сауна<br>
-      2. релакс-массаж с тёплым маслом кедровых орехов<br>
-      3. сибирский фиточай с ягодами<br><br>
-      Продолжительность 1 час`
-    }]
+    list: [],
+    loading: false
   },
   getters: {
-    list (state) {
-      return state.list
+    list: state => state.list,
+    getLoading: state => state.loading,
+    currenCityList: (state, getters) => city => getters.list.filter(item => item.city == city)
+  },
+  mutations: {
+    addPromo (state, payload) {
+      state.list.push(payload)
     },
-    currenCityList (state, getters) {
-      return city => getters.list.filter(item => item.city == city)
+
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+
+    makePromoList (state, payload) {
+      state.list = payload
+    },
+
+    delPromo (state, payload) {
+      const index = state.list.findIndex(el => el.id === payload)
+      if(index >= 0) state.list.splice(index, 1)
+    }
+  },
+  actions: {
+    async delPromo ({commit, rootGetters}, payload) {
+      if (rootGetters['common/getProcessing'] !== false) return false
+
+      commit('common/setProcessing', true, {root: true})
+      commit('common/cleanError', null, {root: true})
+
+      try {        
+        await fb.database().ref('promo').child(payload).remove()
+        await fb.storage().ref().child(`promo/${payload}.jpg`).delete()
+
+        commit('common/setProcessing', false, {root: true})
+        commit('delPromo', payload)
+      } catch (error) {
+        commit('common/setError', error.message, {root: true})
+        commit('common/setProcessing', false, {root: true})
+        throw error
+      }  
+    },
+    
+    async addPromo ({commit, rootGetters}, payload) {
+
+      if (rootGetters['common/getProcessing'] !== false) return false
+
+      commit('common/setProcessing', true, {root: true})
+      commit('common/cleanError', null, {root: true})
+
+      try {
+        const promoObj = await fb.database().ref('promo').push(payload.promo),
+          promoId = promoObj.key
+
+        await fb.storage().ref().child(`promo/${promoId}.jpg`).putString(payload.image, 'data_url')
+
+        const imgSrc = await fb.storage().ref().child(`promo/${promoId}.jpg`).getDownloadURL(),
+          promo = {
+            ...payload.promo,
+            src: imgSrc,
+            id: promoId
+          }
+
+        await fb.database().ref('promo').child(promoId).update({
+          src: imgSrc
+        })
+ 
+        commit('addPromo', promo)
+        commit('common/setProcessing', false, {root: true})
+
+      } catch (error) {
+
+        commit('common/setError', error.message, {root: true})
+        commit('common/setProcessing', false, {root: true})
+        throw error
+      }      
+    },
+    async fetchPromoList ({commit}) {
+      commit('setLoading', true)
+      commit('common/cleanError', null, {root: true})
+
+      try {
+        const promo = await fb.database().ref('promo').once('value'),      
+          promoObj = promo.val()     
+        
+        let promoArr = []
+
+        if (promoObj) {
+          promoArr = Object.keys(promoObj).reduce((arr, key) => {
+            
+            const obj = {
+              ...promoObj[key],
+              id: key
+            }
+
+            arr.push(obj)
+            return arr          
+          }, [])
+        } 
+
+        commit('makePromoList', promoArr)        
+        commit('setLoading', false)
+
+      } catch (error) {
+
+        commit('common/setError', error.message, {root: true})
+        commit('setLoading', false)
+        throw error
+      } 
     }
   }
 }

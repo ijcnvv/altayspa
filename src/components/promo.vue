@@ -4,7 +4,7 @@ include ../tools/mixins.pug
   slick.promo__list(
     ref="slick"
     :options="slickOptions"
-    :key="city.text")
+    :key="sliderKey")
     +e.wrap(v-for="(item, i) in promoList" :key="i")
       +e.item
         +e.img._darken(:style="{backgroundImage: `url('${item.src}')`}")
@@ -22,6 +22,15 @@ include ../tools/mixins.pug
           +e.A.link.link(:href="'tel:' + city.phone") {{ city.phone }}
           span или закажите обратный звонок и мы свяжемся с вами в ближайшее время
         v-btn.ma-0.mt-3(color="orange darken-3 white--text" @click.prevent="scrolling") Заказать звонок
++b.SECTION.promo._loading#promo(v-else-if="isLoading")
+  v-container.fluid.fill-height
+    v-layout.align-center.justify-center
+      v-flex.xs12.text-xs-center
+        v-progress-circular(
+          :size="100"
+          :width="5"
+          color="orange darken-3"
+          indeterminate)
 </template>
 
 <script>
@@ -62,13 +71,17 @@ export default {
   computed: {
     ...mapGetters ({
       list: 'promo/currenCityList',
-      city: 'cities/current'
+      city: 'cities/current',
+      isLoading: 'promo/getLoading'
     }),
     promoList () {
-      return this.list(this.city.text)
+      return this.list(this.city.id)
     },
     isPromo () {
       return this.promoList.length > 0
+    },
+    sliderKey () {
+      return `${this.city.text}_${this.promoList.length}`
     }
   },
 
