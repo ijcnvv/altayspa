@@ -3,7 +3,7 @@ include ../../tools/mixins.pug
 +b.SECTION#about.about
   .inner
     +e.UL.list
-      +e.item(v-for="(item, i) in list" :key="i")
+      +e.item(v-for="(item, index) in list" :key="index")
         font-awesome-icon.fa-3x.about__ico(:icon="item.ico")
         +e.SPAN.text(v-html="item.title")      
 </template>
@@ -11,8 +11,7 @@ include ../../tools/mixins.pug
 <script>
 export default {
   data: () => ({
-    list: [
-      {
+    list: [{
         ico: ['fab','pagelines'],
         title: 'Натуральные природные компоненты'
       },
@@ -22,13 +21,16 @@ export default {
       },
       {
         ico: ['fas','mortar-pestle'],
-        title: 'Эффективность уникальных<br>SPA-программ'
+        title: 'Уникальные<br>SPA-программы'
       },
       {
         ico: ['fas','leaf'],
         title: 'Доступный<br>и полезный отдых'
-      }
-    ]
+      },
+      {
+        ico: ['fas','award'],
+        title: 'Одобрено знахарями Сибири'
+      }]
   })
 }
 </script>

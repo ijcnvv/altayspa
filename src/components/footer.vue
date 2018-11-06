@@ -12,7 +12,16 @@ include ../tools/mixins.pug
         +e.UL.list
           +e.LI.item(v-for="(el, i) in menu" :key="i")
             +e.A.link.link(href="#" @click.prevent="scrolling(el.target)") {{ el.title }}
+          +e.LI.item
+            +e.A.link.link(href="#" @click.prevent="dialog = true") Франшиза
       +e.CONTACT-INFO.contacts
+  +e.V-DIALOG.dialog(v-model="dialog" width="auto")
+    +e.V-CARD.modal-text
+      v-card-text
+        +e.H2.modal-title Франшиза
+        div.mt-4 
+          span Раздел находится в разработке. Вся информация по телефону 
+          +e.A.link.link(href="tel:+79111133000") +7 (911) 113-30-00
 </template>
 
 <script>
@@ -23,6 +32,10 @@ export default {
   components: {
     contactInfo
   },
+
+  data: () => ({
+    dialog: false
+  }),
 
   computed: {
     ...mapGetters ({
