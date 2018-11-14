@@ -18,9 +18,9 @@ export default {
     {
       id: 2,
       text: 'Санкт-Петербург',
-      address: '7-я Красноармейская, 30',
+      address: '7-я Красноармейская, 18',
       img: '/img/city/sankt_peterburg.jpg',
-      coords: [59.911448, 30.308152],
+      coords: [59.911529, 30.311788],
       phone: '+7 (911) 925-51-05',
       time: 'c 10:00 до 21:00',
       email: '',

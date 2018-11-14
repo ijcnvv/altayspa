@@ -15,6 +15,9 @@ include ../tools/mixins.pug
           +e.LI.item
             +e.A.link.link(href="#" @click.prevent="dialog = true") Франшиза
       +e.CONTACT-INFO.contacts
+  v-layout.row.justify-center.align-center.pt-4
+    span.mr-2 Сайт разработан
+    a.link(:href="'http://'+developer" target="_blank") {{ developer }}
   +e.V-DIALOG.dialog(v-model="dialog" width="auto")
     +e.V-CARD.modal-text
       v-card-text
@@ -34,7 +37,8 @@ export default {
   },
 
   data: () => ({
-    dialog: false
+    dialog: false,
+    developer: 'www.novikovproject.ru'
   }),
 
   computed: {
