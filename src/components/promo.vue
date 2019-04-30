@@ -1,4 +1,4 @@
-<template <template lang="pug">
+<template lang="pug">
 include ../tools/mixins.pug
 +b.SECTION.promo#promo(v-if="isPromo")
   slick.promo__list(
