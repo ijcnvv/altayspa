@@ -237,8 +237,8 @@ export default {
           hour = Math.floor(time / 60),
           min = time - hour * 60
 
-          hour = hour > 0 ? `${hour} час${ending(hour, '','а','ов')}` : ''
-          min = min > 0 ? `${min} минут${ending(min, 'а','ы','')}` : ''
+          hour = hour > 0 ? `${hour} ${ending(hour, 'час', '','а','ов')}` : '';
+          min = min > 0 ? `${min} ${ending(min, 'минут', 'а','ы','')}` : '';
 
         return (`${hour} ${min}`).trim()
       }
